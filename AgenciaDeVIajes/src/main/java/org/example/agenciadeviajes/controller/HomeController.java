@@ -28,8 +28,27 @@ public class HomeController {
     @FXML
     public void abrirVuelos() {
 
-        System.out.println("Abrir vuelos");
-    }
+        try {
+
+            FXMLLoader loader = new FXMLLoader(
+
+                    getClass().getResource("/org/example/agenciadeviajes/view/vuelos.fxml")
+
+            );
+
+            Parent root = loader.load();
+
+            Stage stage = (Stage) lblBienvenida.getScene().getWindow();
+
+            stage.setScene(new Scene(root));
+
+            stage.setTitle("Vuelos");
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+        }    }
 
     @FXML
     public void abrirHoteles() {
