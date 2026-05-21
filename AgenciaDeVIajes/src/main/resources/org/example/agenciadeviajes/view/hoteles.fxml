@@ -35,6 +35,18 @@
                 <Insets top="20" right="20" bottom="20" left="20"/>
             </padding>
 
+            <HBox spacing="10">
+
+                <DatePicker fx:id="dpCheckIn"
+                            promptText="Check-In"/>
+
+                <DatePicker fx:id="dpCheckOut"
+                            promptText="Check-Out"/>
+
+                <Spinner fx:id="spHabitaciones"
+                         prefWidth="120"/>
+
+            </HBox>
             <TableView fx:id="tablaHoteles"
                        prefHeight="500">
 
@@ -67,6 +79,9 @@
                 </columns>
 
             </TableView>
+            <Button text="Reservar Hotel"
+                    prefWidth="200"
+                    onAction="#reservarHotel"/>
 
             <Button text="Volver al Home"
                     prefWidth="200"
