@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.agenciadeviajes.controller.VuelosController">
+
+    <!-- TOP -->
+    <top>
+
+        <VBox spacing="10"
+              style="-fx-background-color: #1565C0;">
+
+            <padding>
+                <Insets top="15" right="15" bottom="15" left="15"/>
+            </padding>
+
+            <Label text="Consulta de Vuelos"
+                   style="-fx-text-fill: white;
+                          -fx-font-size: 24px;
+                          -fx-font-weight: bold;"/>
+
+        </VBox>
+
+    </top>
+
+    <!-- CENTER -->
+    <center>
+
+        <VBox spacing="15">
+
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+
+            <TableView fx:id="tablaVuelos"
+                       prefHeight="500">
+
+                <columns>
+
+                    <TableColumn fx:id="colAerolinea"
+                                 text="Aerolínea"
+                                 prefWidth="140"/>
+
+                    <TableColumn fx:id="colOrigen"
+                                 text="Origen"
+                                 prefWidth="120"/>
+
+                    <TableColumn fx:id="colDestino"
+                                 text="Destino"
+                                 prefWidth="120"/>
+
+                    <TableColumn fx:id="colSalida"
+                                 text="Salida"
+                                 prefWidth="180"/>
+
+                    <TableColumn fx:id="colPrecio"
+                                 text="Precio"
+                                 prefWidth="120"/>
+
+                    <TableColumn fx:id="colAsientos"
+                                 text="Asientos"
+                                 prefWidth="100"/>
+
+                </columns>
+
+            </TableView>
+
+            <Button text="Volver al Home"
+                    prefWidth="200"
+                    onAction="#volverHome"/>
+
+        </VBox>
+
+    </center>
+
+</BorderPane>
