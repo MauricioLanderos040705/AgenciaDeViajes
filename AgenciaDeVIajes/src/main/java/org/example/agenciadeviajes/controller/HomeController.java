@@ -8,21 +8,23 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import org.example.agenciadeviajes.model.Usuario;
+import org.example.agenciadeviajes.util.Sesion;
 
 public class HomeController {
 
     @FXML
     private Label lblBienvenida;
 
-    private Usuario usuario;
+    @FXML
+    public void initialize() {
 
-    public void setUsuario(Usuario usuario) {
+        if (Sesion.haySesion()) {
 
-        this.usuario = usuario;
-
-        lblBienvenida.setText(
-                "Bienvenido, " + usuario.getNombreCompleto()
-        );
+            lblBienvenida.setText(
+                    "Bienvenido, " +
+                            Sesion.getUsuarioActual().getNombreCompleto()
+            );
+        }
     }
 
     @FXML
@@ -101,8 +103,12 @@ public class HomeController {
 
         try {
 
+            Sesion.cerrarSesion();
+
             FXMLLoader loader = new FXMLLoader(
+
                     getClass().getResource("/org/example/agenciadeviajes/view/login.fxml")
+
             );
 
             Parent root = loader.load();
@@ -110,10 +116,14 @@ public class HomeController {
             Stage stage = (Stage) lblBienvenida.getScene().getWindow();
 
             stage.setScene(new Scene(root));
+
             stage.setTitle("Login");
 
         } catch (Exception e) {
+
             e.printStackTrace();
+
         }
+
     }
 }

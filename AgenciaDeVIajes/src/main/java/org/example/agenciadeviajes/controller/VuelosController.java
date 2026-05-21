@@ -14,6 +14,18 @@ import javafx.stage.Stage;
 
 import org.example.agenciadeviajes.dao.VueloDAO;
 import org.example.agenciadeviajes.model.Vuelo;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.*;
+
+import org.example.agenciadeviajes.dao.ReservaDAO;
+
+import org.example.agenciadeviajes.model.DetalleReservaVuelo;
+
+import org.example.agenciadeviajes.model.Reserva;
+
+import org.example.agenciadeviajes.util.Sesion;
+
+import java.math.BigDecimal;
 
 import java.util.List;
 
@@ -41,6 +53,7 @@ public class VuelosController {
     private TableColumn<Vuelo, Integer> colAsientos;
 
     private final VueloDAO vueloDAO = new VueloDAO();
+    private final ReservaDAO reservaDAO = new ReservaDAO();
 
     @FXML
     public void initialize() {
@@ -115,5 +128,98 @@ public class VuelosController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    @FXML
+    public void reservarVuelo() {
+
+        Vuelo vueloSeleccionado =
+                tablaVuelos.getSelectionModel().getSelectedItem();
+
+        if (vueloSeleccionado == null) {
+
+            mostrarAlerta(
+                    "Debes seleccionar un vuelo."
+            );
+
+            return;
+        }
+
+        try {
+
+            Reserva reserva = new Reserva();
+
+            reserva.setUsuario(
+                    Sesion.getUsuarioActual()
+            );
+
+            reserva.setTipoReserva("Individual");
+
+            reserva.setCodigoDivisa(
+                    vueloSeleccionado.getCodigoDivisa()
+            );
+
+            BigDecimal total =
+                    vueloSeleccionado.getPrecioAsiento();
+
+            reserva.setTotalPagado(total);
+
+            // DETALLE
+            DetalleReservaVuelo detalle =
+                    new DetalleReservaVuelo(
+                            vueloSeleccionado,
+                            1
+                    );
+
+            reserva.getDetallesVuelo().add(detalle);
+
+            int idReserva =
+                    reservaDAO.crearReserva(reserva);
+
+            if (idReserva != -1) {
+
+                mostrarExito(
+                        "Vuelo reservado correctamente.\n" +
+                                "Folio: #" + idReserva
+                );
+
+            } else {
+
+                mostrarAlerta(
+                        "Error al guardar la reserva."
+                );
+            }
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+            mostrarAlerta(
+                    "Ocurrió un error."
+            );
+        }
+    }
+    private void mostrarAlerta(String mensaje) {
+
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+
+        alert.setTitle("Aviso");
+
+        alert.setHeaderText(null);
+
+        alert.setContentText(mensaje);
+
+        alert.showAndWait();
+    }
+    private void mostrarExito(String mensaje) {
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
+        alert.setTitle("Reserva Exitosa");
+
+        alert.setHeaderText(null);
+
+        alert.setContentText(mensaje);
+
+        alert.showAndWait();
     }
 }

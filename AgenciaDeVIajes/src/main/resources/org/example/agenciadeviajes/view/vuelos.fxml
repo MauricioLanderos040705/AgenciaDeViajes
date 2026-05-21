@@ -67,6 +67,9 @@
                 </columns>
 
             </TableView>
+            <Button text="Reservar Vuelo"
+                    prefWidth="200"
+                    onAction="#reservarVuelo"/>
 
             <Button text="Volver al Home"
                     prefWidth="200"

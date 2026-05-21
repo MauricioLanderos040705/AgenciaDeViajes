@@ -24,6 +24,7 @@ public class HelloApplication extends Application {
         stage.show();
         System.out.println(
 
+                    //Prueba para el hash de la contraseña en lab BD
                 PasswordUtil.hashSHA256("1234")
 
         );

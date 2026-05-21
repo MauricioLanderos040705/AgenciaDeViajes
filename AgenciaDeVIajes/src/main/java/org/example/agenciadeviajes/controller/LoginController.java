@@ -9,6 +9,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import org.example.agenciadeviajes.util.Sesion;
 import org.example.agenciadeviajes.dao.UsuarioDAO;
 import org.example.agenciadeviajes.model.Usuario;
 import org.example.agenciadeviajes.util.PasswordUtil;
@@ -30,11 +31,15 @@ public class LoginController {
     public void iniciarSesion() {
 
         String correo = txtCorreo.getText().trim();
+
         String password = txtPassword.getText().trim();
 
         if (correo.isEmpty() || password.isEmpty()) {
+
             lblMensaje.setText("Completa todos los campos.");
+
             return;
+
         }
 
         String hash = PasswordUtil.hashSHA256(password);
@@ -43,7 +48,12 @@ public class LoginController {
 
         if (usuario != null) {
 
+            // GUARDAR SESIÓN GLOBAL
+
+            Sesion.iniciarSesion(usuario);
+
             lblMensaje.setStyle("-fx-text-fill: green;");
+
             lblMensaje.setText("Bienvenido " + usuario.getNombre());
 
             abrirHome(usuario);
@@ -51,8 +61,11 @@ public class LoginController {
         } else {
 
             lblMensaje.setStyle("-fx-text-fill: red;");
+
             lblMensaje.setText("Correo o contraseña incorrectos.");
+
         }
+
     }
 
     private void abrirHome(Usuario usuario) {
@@ -60,31 +73,19 @@ public class LoginController {
         try {
 
             FXMLLoader loader = new FXMLLoader(
-
                     getClass().getResource("/org/example/agenciadeviajes/view/home.fxml")
-
             );
 
             Parent root = loader.load();
 
-            // PASAR USUARIO AL HOME
-
-            HomeController controller = loader.getController();
-
-            controller.setUsuario(usuario);
-
             Stage stage = (Stage) txtCorreo.getScene().getWindow();
 
             stage.setScene(new Scene(root));
-
             stage.setTitle("Home");
 
         } catch (Exception e) {
-
             e.printStackTrace();
-
         }
-
     }
     @FXML
     public void abrirRegistro() {
