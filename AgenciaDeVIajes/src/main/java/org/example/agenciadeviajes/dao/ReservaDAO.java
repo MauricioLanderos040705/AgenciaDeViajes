@@ -215,21 +215,49 @@ public class ReservaDAO {
     }
 
     private Reserva mapearCabecera(ResultSet rs) throws SQLException {
+
         Reserva r = new Reserva();
-        r.setIdReserva(rs.getInt("id_reserva"));
-        r.setFolio(rs.getString("folio") != null ? rs.getString("folio") :
-                String.format("#RVJ-%tY-%04d", rs.getTimestamp("fecha_reserva"), rs.getInt("id_reserva")));
-        r.setTipoReserva(rs.getString("tipo_reserva"));
-        r.setFechaReserva(rs.getTimestamp("fecha_reserva"));
-        r.setTotalPagado(rs.getBigDecimal("total_pagado"));
-        r.setCodigoDivisa(rs.getString("codigo_divisa"));
+
+        r.setFechaReserva(
+                rs.getTimestamp("fecha_reserva")
+        );
+
+        r.setIdReserva(
+                rs.getInt("id_reserva")
+        );
+
+        r.setTipoReserva(
+                rs.getString("tipo_reserva")
+        );
+
+        r.setTotalPagado(
+                rs.getBigDecimal("total_pagado")
+        );
+
+        r.setCodigoDivisa(
+                rs.getString("codigo_divisa")
+        );
 
         Usuario u = new Usuario();
-        u.setIdUsuario(rs.getInt("id_usuario"));
-        u.setNombre(rs.getString("nombre"));
-        u.setApellido(rs.getString("apellido"));
-        u.setCorreo(rs.getString("correo"));
+
+        u.setIdUsuario(
+                rs.getInt("id_usuario")
+        );
+
+        u.setNombre(
+                rs.getString("nombre")
+        );
+
+        u.setApellido(
+                rs.getString("apellido")
+        );
+
+        u.setCorreo(
+                rs.getString("correo")
+        );
+
         r.setUsuario(u);
+
         return r;
     }
 

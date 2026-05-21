@@ -21,7 +21,7 @@ public class HomeController {
         if (Sesion.haySesion()) {
 
             lblBienvenida.setText(
-                    "Bienvenido, " +
+                    "Bienvenido(a), " +
                             Sesion.getUsuarioActual().getNombreCompleto()
             );
         }
@@ -95,7 +95,27 @@ public class HomeController {
     @FXML
     public void abrirReservas() {
 
-        System.out.println("Abrir reservas");
+        try {
+
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource(
+                            "/org/example/agenciadeviajes/view/mis_reservas.fxml"
+                    )
+            );
+
+            Parent root = loader.load();
+
+            Stage stage =
+                    (Stage) lblBienvenida.getScene().getWindow();
+
+            stage.setScene(new Scene(root));
+
+            stage.setTitle("Mis Reservas");
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+        }
     }
 
     @FXML

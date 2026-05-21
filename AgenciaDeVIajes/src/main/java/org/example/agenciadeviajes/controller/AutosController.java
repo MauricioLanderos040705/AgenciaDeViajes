@@ -16,6 +16,18 @@ import javafx.stage.Stage;
 
 import org.example.agenciadeviajes.dao.AutoDAO;
 import org.example.agenciadeviajes.model.Auto;
+import javafx.scene.control.Alert;
+import javafx.scene.control.DatePicker;
+
+import org.example.agenciadeviajes.dao.ReservaDAO;
+
+import org.example.agenciadeviajes.model.DetalleReservaAuto;
+import org.example.agenciadeviajes.model.Reserva;
+
+import org.example.agenciadeviajes.util.Sesion;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 import java.util.List;
 
@@ -23,6 +35,11 @@ public class AutosController {
 
     @FXML
     private TableView<Auto> tablaAutos;
+    @FXML
+    private DatePicker dpFechaInicio;
+
+    @FXML
+    private DatePicker dpFechaFin;
 
     @FXML
     private TableColumn<Auto, String> colMarca;
@@ -43,6 +60,7 @@ public class AutosController {
     private TableColumn<Auto, String> colPrecio;
 
     private final AutoDAO autoDAO = new AutoDAO();
+    private final ReservaDAO reservaDAO = new ReservaDAO();
 
     @FXML
     public void initialize() {
@@ -129,5 +147,123 @@ public class AutosController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    @FXML
+    public void reservarAuto() {
+
+        Auto autoSeleccionado =
+                tablaAutos.getSelectionModel().getSelectedItem();
+
+        if (autoSeleccionado == null) {
+
+            mostrarAlerta(
+                    "Selecciona un auto."
+            );
+
+            return;
+        }
+
+        LocalDate fechaInicio =
+                dpFechaInicio.getValue();
+
+        LocalDate fechaFin =
+                dpFechaFin.getValue();
+
+        if (fechaInicio == null || fechaFin == null) {
+
+            mostrarAlerta(
+                    "Selecciona las fechas."
+            );
+
+            return;
+        }
+
+        if (!fechaFin.isAfter(fechaInicio)) {
+
+            mostrarAlerta(
+                    "La fecha fin debe ser posterior."
+            );
+
+            return;
+        }
+
+        try {
+
+            Reserva reserva = new Reserva();
+
+            reserva.setUsuario(
+                    Sesion.getUsuarioActual()
+            );
+
+            reserva.setTipoReserva("Individual");
+
+            reserva.setCodigoDivisa(
+                    autoSeleccionado.getCodigoDivisa()
+            );
+
+            // DETALLE AUTO
+            DetalleReservaAuto detalle =
+                    new DetalleReservaAuto(
+                            autoSeleccionado,
+                            fechaInicio,
+                            fechaFin
+                    );
+
+            reserva.getDetallesAuto().add(detalle);
+
+            BigDecimal total =
+                    detalle.getSubtotal();
+
+            reserva.setTotalPagado(total);
+
+            int idReserva =
+                    reservaDAO.crearReserva(reserva);
+
+            if (idReserva != -1) {
+
+                mostrarExito(
+                        "Auto reservado correctamente.\n" +
+                                "Folio: #" + idReserva
+                );
+
+            } else {
+
+                mostrarAlerta(
+                        "Error al guardar reserva."
+                );
+            }
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+            mostrarAlerta(
+                    "Ocurrió un error."
+            );
+        }
+    }
+    private void mostrarAlerta(String mensaje) {
+
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+
+        alert.setTitle("Aviso");
+
+        alert.setHeaderText(null);
+
+        alert.setContentText(mensaje);
+
+        alert.showAndWait();
+    }
+    private void mostrarExito(String mensaje) {
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
+        alert.setTitle("Reserva Exitosa");
+
+        alert.setHeaderText(null);
+
+        alert.setContentText(mensaje);
+
+        alert.showAndWait();
     }
 }

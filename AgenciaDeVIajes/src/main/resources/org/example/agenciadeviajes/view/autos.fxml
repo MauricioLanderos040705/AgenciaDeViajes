@@ -34,7 +34,15 @@
             <padding>
                 <Insets top="20" right="20" bottom="20" left="20"/>
             </padding>
+            <HBox spacing="10">
 
+                <DatePicker fx:id="dpFechaInicio"
+                            promptText="Fecha Inicio"/>
+
+                <DatePicker fx:id="dpFechaFin"
+                            promptText="Fecha Fin"/>
+
+            </HBox>
             <TableView fx:id="tablaAutos"
                        prefHeight="500">
 
@@ -67,7 +75,9 @@
                 </columns>
 
             </TableView>
-
+            <Button text="Reservar Auto"
+                    prefWidth="200"
+                    onAction="#reservarAuto"/>
             <Button text="Volver al Home"
                     prefWidth="200"
                     onAction="#volverHome"/>

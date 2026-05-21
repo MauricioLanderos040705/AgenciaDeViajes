@@ -80,7 +80,8 @@ public class LoginController {
 
             Stage stage = (Stage) txtCorreo.getScene().getWindow();
 
-            stage.setScene(new Scene(root));
+            stage.setScene(new Scene(root, 470, 530));
+
             stage.setTitle("Home");
 
         } catch (Exception e) {
