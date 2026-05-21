@@ -60,19 +60,31 @@ public class LoginController {
         try {
 
             FXMLLoader loader = new FXMLLoader(
+
                     getClass().getResource("/org/example/agenciadeviajes/view/home.fxml")
+
             );
 
             Parent root = loader.load();
 
+            // PASAR USUARIO AL HOME
+
+            HomeController controller = loader.getController();
+
+            controller.setUsuario(usuario);
+
             Stage stage = (Stage) txtCorreo.getScene().getWindow();
 
             stage.setScene(new Scene(root));
+
             stage.setTitle("Home");
 
         } catch (Exception e) {
+
             e.printStackTrace();
+
         }
+
     }
     @FXML
     public void abrirRegistro() {
