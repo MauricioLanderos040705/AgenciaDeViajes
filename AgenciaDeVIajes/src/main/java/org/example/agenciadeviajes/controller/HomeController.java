@@ -53,14 +53,42 @@ public class HomeController {
     @FXML
     public void abrirHoteles() {
 
-        System.out.println("Abrir hoteles");
-    }
+        try {
+
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/org/example/agenciadeviajes/view/hoteles.fxml")
+            );
+
+            Parent root = loader.load();
+
+            Stage stage = (Stage) lblBienvenida.getScene().getWindow();
+
+            stage.setScene(new Scene(root));
+            stage.setTitle("Hoteles");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }    }
 
     @FXML
     public void abrirAutos() {
 
-        System.out.println("Abrir autos");
-    }
+        try {
+
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/org/example/agenciadeviajes/view/autos.fxml")
+            );
+
+            Parent root = loader.load();
+
+            Stage stage = (Stage) lblBienvenida.getScene().getWindow();
+
+            stage.setScene(new Scene(root));
+            stage.setTitle("Autos");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }    }
 
     @FXML
     public void abrirReservas() {

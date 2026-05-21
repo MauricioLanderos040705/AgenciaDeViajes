@@ -10,7 +10,6 @@ public class Auto {
     private int idProveedor;
 
 
-    public Auto() {}
 
     public Auto(int idAuto, ModeloAuto modeloAuto, String proveedor, int idProveedor,
                 Ciudad ciudadDisponibilidad, BigDecimal precioDia, String codigoDivisa) {
