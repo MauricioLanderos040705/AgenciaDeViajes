@@ -27,17 +27,16 @@ public class AutoDAO implements GenericDAO<Auto> {
     public boolean insertar(Auto a) {
         String sql = """
             INSERT INTO catalogo_autos
-              (id_modelo, proveedor, id_ciudad_disponibilidad,
-               precio_dia, disponible, codigo_divisa)
-            VALUES (?, ?, ?, ?, ?, ?)
+              (id_modelo, id_proveedor, id_ciudad_disponibilidad,
+               precio_dia, codigo_divisa)
+            VALUES (?, ?, ?, ?, ?)
             """;
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, a.getModeloAuto().getIdModelo());
-            ps.setString(2, a.getProveedor());
+            ps.setInt(2, a.getIdProveedor());               // FK int, no String
             ps.setInt(3, a.getCiudadDisponibilidad().getIdCiudad());
             ps.setBigDecimal(4, a.getPrecioDia());
-            ps.setBoolean(5, a.isDisponible());
-            ps.setString(6, a.getCodigoDivisa());
+            ps.setString(5, a.getCodigoDivisa());
             return ps.executeUpdate() > 0;
         } catch (SQLException e) {
             System.err.println("[AutoDAO.insertar] " + e.getMessage());
@@ -62,7 +61,7 @@ public class AutoDAO implements GenericDAO<Auto> {
     public List<Auto> obtenerTodos() {
         List<Auto> lista = new ArrayList<>();
         try (Statement st = conn.createStatement();
-             ResultSet rs = st.executeQuery(buildSelectBase() + " ORDER BY m.categoria, a.precio_dia")) {
+             ResultSet rs = st.executeQuery(buildSelectBase() + " ORDER BY cat.nombre, a.precio_dia")) {
             while (rs.next()) lista.add(mapear(rs));
         } catch (SQLException e) {
             System.err.println("[AutoDAO.obtenerTodos] " + e.getMessage());
@@ -72,11 +71,10 @@ public class AutoDAO implements GenericDAO<Auto> {
 
     @Override
     public boolean actualizar(Auto a) {
-        String sql = "UPDATE catalogo_autos SET precio_dia=?, disponible=? WHERE id_auto=?";
+        String sql = "UPDATE catalogo_autos SET precio_dia=? WHERE id_auto=?";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setBigDecimal(1, a.getPrecioDia());
-            ps.setBoolean(2, a.isDisponible());
-            ps.setInt(3, a.getIdAuto());
+            ps.setInt(2, a.getIdAuto());
             return ps.executeUpdate() > 0;
         } catch (SQLException e) {
             System.err.println("[AutoDAO.actualizar] " + e.getMessage());
@@ -105,8 +103,7 @@ public class AutoDAO implements GenericDAO<Auto> {
         List<Auto> lista = new ArrayList<>();
         String sql = buildSelectBase() + """
              WHERE a.id_ciudad_disponibilidad = ?
-               AND a.disponible = TRUE
-             ORDER BY m.categoria, a.precio_dia
+             ORDER BY cat.nombre, a.precio_dia
             """;
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, idCiudad);
@@ -122,13 +119,17 @@ public class AutoDAO implements GenericDAO<Auto> {
     private String buildSelectBase() {
         return """
             SELECT a.*,
-                   m.id_modelo, m.marca, m.modelo AS nombre_modelo, m.categoria,
+                   m.id_modelo, m.marca, m.nombre AS nombre_modelo,
+                   cat.nombre  AS categoria,
+                   prov.nombre AS nombre_proveedor,
                    c.id_ciudad, c.nombre AS nombre_ciudad, c.codigo_iata,
                    p.id_pais, p.nombre AS nombre_pais, p.codigo_iso
             FROM catalogo_autos a
-            JOIN modelos_autos m ON a.id_modelo              = m.id_modelo
-            JOIN ciudades     c  ON a.id_ciudad_disponibilidad = c.id_ciudad
-            JOIN paises       p  ON c.id_pais                 = p.id_pais
+            JOIN modelos_autos     m    ON a.id_modelo                = m.id_modelo
+            JOIN categorias_autos  cat  ON m.id_categoria             = cat.id_categoria
+            JOIN proveedores_autos prov ON a.id_proveedor             = prov.id_proveedor
+            JOIN ciudades          c    ON a.id_ciudad_disponibilidad = c.id_ciudad
+            JOIN paises            p    ON c.id_pais                  = p.id_pais
             """;
     }
 
@@ -136,20 +137,20 @@ public class AutoDAO implements GenericDAO<Auto> {
         ModeloAuto modelo = new ModeloAuto(
                 rs.getInt("id_modelo"),
                 rs.getString("marca"),
-                rs.getString("nombre_modelo"),
-                rs.getString("categoria")
+                rs.getString("nombre_modelo"),  // m.nombre
+                rs.getString("categoria")        // cat.nombre
         );
 
-        Pais pais = new Pais(rs.getInt("id_pais"), rs.getString("nombre_pais"), rs.getString("codigo_iso"));
+        Pais pais   = new Pais(rs.getInt("id_pais"), rs.getString("nombre_pais"), rs.getString("codigo_iso"));
         Ciudad ciudad = new Ciudad(rs.getInt("id_ciudad"), rs.getString("nombre_ciudad"), rs.getString("codigo_iata"), pais);
 
         return new Auto(
                 rs.getInt("id_auto"),
                 modelo,
-                rs.getString("proveedor"),
+                rs.getString("nombre_proveedor"), // nombre del JOIN a proveedores_autos
+                rs.getInt("id_proveedor"),         // FK para insertar
                 ciudad,
                 rs.getBigDecimal("precio_dia"),
-                rs.getBoolean("disponible"),
                 rs.getString("codigo_divisa")
         );
     }

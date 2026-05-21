@@ -6,23 +6,29 @@ public class Auto {
     private String proveedor;
     private Ciudad ciudadDisponibilidad;
     private BigDecimal precioDia;
-    private boolean disponible;
     private String codigoDivisa;
+    private int idProveedor;
+
 
     public Auto() {}
 
-    public Auto(int idAuto, ModeloAuto modeloAuto, String proveedor,
-                Ciudad ciudadDisponibilidad, BigDecimal precioDia,
-                boolean disponible, String codigoDivisa) {
+    public Auto(int idAuto, ModeloAuto modeloAuto, String proveedor, int idProveedor,
+                Ciudad ciudadDisponibilidad, BigDecimal precioDia, String codigoDivisa) {
         this.idAuto = idAuto;
         this.modeloAuto = modeloAuto;
         this.proveedor = proveedor;
+        this.idProveedor = idProveedor;
         this.ciudadDisponibilidad = ciudadDisponibilidad;
         this.precioDia = precioDia;
-        this.disponible = disponible;
         this.codigoDivisa = codigoDivisa;
     }
+    public int getIdProveedor() {
+        return idProveedor;
+    }
 
+    public void setIdProveedor(int idProveedor) {
+        this.idProveedor = idProveedor;
+    }
     public int getIdAuto() {
         return idAuto; }
     public void setIdAuto(int idAuto) {
@@ -47,11 +53,6 @@ public class Auto {
         return precioDia; }
     public void setPrecioDia(BigDecimal precioDia) {
         this.precioDia = precioDia; }
-
-    public boolean isDisponible() {
-        return disponible; }
-    public void setDisponible(boolean disponible) {
-        this.disponible = disponible; }
 
     public String getCodigoDivisa() {
         return codigoDivisa; }

@@ -9,21 +9,18 @@ public class Hotel {
     private int estrellas;
     private BigDecimal precioNoche;
     private int habitacionesDisponibles;
-    private String descripcion;
     private String codigoDivisa;
 
     public Hotel() {}
 
     public Hotel(int idHotel, String nombre, Ciudad ciudad, int estrellas,
-                 BigDecimal precioNoche, int habitacionesDisponibles,
-                 String descripcion, String codigoDivisa) {
+                 BigDecimal precioNoche, int habitacionesDisponibles, String codigoDivisa) {
         this.idHotel = idHotel;
         this.nombre = nombre;
         this.ciudad = ciudad;
         this.estrellas = estrellas;
         this.precioNoche = precioNoche;
         this.habitacionesDisponibles = habitacionesDisponibles;
-        this.descripcion = descripcion;
         this.codigoDivisa = codigoDivisa;
     }
 
@@ -58,10 +55,6 @@ public class Hotel {
         this.habitacionesDisponibles = habitacionesDisponibles;
     }
 
-    public String getDescripcion() {
-        return descripcion; }
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion; }
 
     public String getCodigoDivisa() {
         return codigoDivisa; }

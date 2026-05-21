@@ -28,8 +28,8 @@ public class HotelDAO implements GenericDAO<Hotel> {
         String sql = """
             INSERT INTO catalogo_hoteles
               (nombre, id_ciudad, estrellas, precio_noche,
-               habitaciones_disponibles, descripcion, codigo_divisa)
-            VALUES (?, ?, ?, ?, ?, ?, ?)
+               habitaciones_disponibles, codigo_divisa)
+            VALUES (?, ?, ?, ?, ?, ?)
             """;
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, h.getNombre());
@@ -37,8 +37,7 @@ public class HotelDAO implements GenericDAO<Hotel> {
             ps.setInt(3, h.getEstrellas());
             ps.setBigDecimal(4, h.getPrecioNoche());
             ps.setInt(5, h.getHabitacionesDisponibles());
-            ps.setString(6, h.getDescripcion());
-            ps.setString(7, h.getCodigoDivisa());
+            ps.setString(6, h.getCodigoDivisa());   // era índice 7 (incorrecto)
             return ps.executeUpdate() > 0;
         } catch (SQLException e) {
             System.err.println("[HotelDAO.insertar] " + e.getMessage());
@@ -138,7 +137,7 @@ public class HotelDAO implements GenericDAO<Hotel> {
     }
 
     private Hotel mapear(ResultSet rs) throws SQLException {
-        Pais pais  = new Pais(rs.getInt("id_pais"), rs.getString("nombre_pais"), rs.getString("codigo_iso"));
+        Pais pais   = new Pais(rs.getInt("id_pais"), rs.getString("nombre_pais"), rs.getString("codigo_iso"));
         Ciudad ciudad = new Ciudad(rs.getInt("id_ciudad"), rs.getString("nombre_ciudad"), rs.getString("iata_ciudad"), pais);
 
         return new Hotel(
@@ -148,8 +147,8 @@ public class HotelDAO implements GenericDAO<Hotel> {
                 rs.getInt("estrellas"),
                 rs.getBigDecimal("precio_noche"),
                 rs.getInt("habitaciones_disponibles"),
-                rs.getString("descripcion"),
                 rs.getString("codigo_divisa")
+                // 'descripcion' eliminado: la columna no existe en catalogo_hoteles
         );
     }
 }

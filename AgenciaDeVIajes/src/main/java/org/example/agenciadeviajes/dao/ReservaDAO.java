@@ -116,25 +116,21 @@ public class ReservaDAO {
         Map<String, Object> stats = new HashMap<>();
         try (Statement st = conn.createStatement()) {
 
-            // totales generales
             ResultSet rs = st.executeQuery(
                     "SELECT COUNT(*) AS total, SUM(total_pagado) AS ingresos FROM reservas");
             if (rs.next()) {
                 stats.put("totalReservas", rs.getInt("total"));
                 stats.put("totalIngresos", rs.getBigDecimal("ingresos"));
             }
-
-            // por tipo
             rs = st.executeQuery(
                     "SELECT tipo_reserva, COUNT(*) AS cnt FROM reservas GROUP BY tipo_reserva");
             while (rs.next()) {
-                if ("Paquete".equals(rs.getString("tipo_reserva")))
+                if ("Paquete Vuelo+Hotel".equals(rs.getString("tipo_reserva")))
                     stats.put("totalPaquetes", rs.getInt("cnt"));
                 else
                     stats.put("totalIndividuales", rs.getInt("cnt"));
             }
 
-            // reservas por mes (últimos 6 meses)
             List<Object[]> porMes = new ArrayList<>();
             rs = st.executeQuery("""
                 SELECT DATE_FORMAT(fecha_reserva, '%b %Y') AS mes,
@@ -148,13 +144,12 @@ public class ReservaDAO {
                 porMes.add(new Object[]{rs.getString("mes"), rs.getInt("total")});
             stats.put("reservasPorMes", porMes);
 
-            // top 5 destinos
             List<Object[]> topDestinos = new ArrayList<>();
             rs = st.executeQuery("""
                 SELECT cd.nombre AS destino, COUNT(*) AS cnt
                 FROM detalle_reserva_vuelos dv
-                JOIN catalogo_vuelos v ON dv.id_vuelo   = v.id_vuelo
-                JOIN ciudades       cd ON v.id_ciudad_destino = cd.id_ciudad
+                JOIN catalogo_vuelos v  ON dv.id_vuelo          = v.id_vuelo
+                JOIN ciudades       cd  ON v.id_ciudad_destino   = cd.id_ciudad
                 GROUP BY cd.nombre
                 ORDER BY cnt DESC
                 LIMIT 5
@@ -188,7 +183,8 @@ public class ReservaDAO {
     private void insertarDetalleHotel(int idReserva, DetalleReservaHotel dh) throws SQLException {
         String sql = """
             INSERT INTO detalle_reserva_hoteles
-              (id_reserva, id_hotel, check_in, check_out, cantidad_habitaciones, subtotal)
+              (id_reserva, id_hotel, fecha_check_in, fecha_check_out,
+               cantidad_habitaciones, subtotal)
             VALUES (?, ?, ?, ?, ?, ?)
             """;
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -238,10 +234,10 @@ public class ReservaDAO {
     }
 
     private void cargarDetalles(Reserva r) {
-        // Detalles de vuelo
+
         String sqlV = """
-            SELECT dv.*, v.id_vuelo FROM detalle_reserva_vuelos dv
-            JOIN catalogo_vuelos v ON dv.id_vuelo = v.id_vuelo
+            SELECT dv.id_reserva, dv.id_vuelo, dv.cantidad_pasajeros, dv.subtotal
+            FROM detalle_reserva_vuelos dv
             WHERE dv.id_reserva = ?
             """;
         try (PreparedStatement ps = conn.prepareStatement(sqlV)) {
@@ -250,7 +246,6 @@ public class ReservaDAO {
             VueloDAO vueloDAO = new VueloDAO();
             while (rs.next()) {
                 DetalleReservaVuelo dv = new DetalleReservaVuelo();
-                dv.setIdDetalle(rs.getInt("id_detalle"));
                 dv.setVuelo(vueloDAO.obtenerPorId(rs.getInt("id_vuelo")));
                 dv.setCantidadPasajeros(rs.getInt("cantidad_pasajeros"));
                 dv.setSubtotal(rs.getBigDecimal("subtotal"));
@@ -260,18 +255,22 @@ public class ReservaDAO {
             System.err.println("[ReservaDAO.cargarDetalles-vuelo] " + e.getMessage());
         }
 
-        // Detalles de hotel
-        String sqlH = "SELECT * FROM detalle_reserva_hoteles WHERE id_reserva = ?";
+ 
+        String sqlH = """
+            SELECT id_reserva, id_hotel, fecha_check_in, fecha_check_out,
+                   cantidad_habitaciones, subtotal
+            FROM detalle_reserva_hoteles
+            WHERE id_reserva = ?
+            """;
         try (PreparedStatement ps = conn.prepareStatement(sqlH)) {
             ps.setInt(1, r.getIdReserva());
             ResultSet rs = ps.executeQuery();
             HotelDAO hotelDAO = new HotelDAO();
             while (rs.next()) {
                 DetalleReservaHotel dh = new DetalleReservaHotel();
-                dh.setIdDetalle(rs.getInt("id_detalle"));
                 dh.setHotel(hotelDAO.obtenerPorId(rs.getInt("id_hotel")));
-                dh.setCheckIn(rs.getDate("check_in").toLocalDate());
-                dh.setCheckOut(rs.getDate("check_out").toLocalDate());
+                dh.setCheckIn(rs.getDate("fecha_check_in").toLocalDate());
+                dh.setCheckOut(rs.getDate("fecha_check_out").toLocalDate());
                 dh.setCantidadHabitaciones(rs.getInt("cantidad_habitaciones"));
                 dh.setSubtotal(rs.getBigDecimal("subtotal"));
                 r.getDetallesHotel().add(dh);
@@ -280,15 +279,17 @@ public class ReservaDAO {
             System.err.println("[ReservaDAO.cargarDetalles-hotel] " + e.getMessage());
         }
 
-        // Detalles de auto
-        String sqlA = "SELECT * FROM detalle_reserva_autos WHERE id_reserva = ?";
+        String sqlA = """
+            SELECT id_reserva, id_auto, fecha_inicio, fecha_fin, subtotal
+            FROM detalle_reserva_autos
+            WHERE id_reserva = ?
+            """;
         try (PreparedStatement ps = conn.prepareStatement(sqlA)) {
             ps.setInt(1, r.getIdReserva());
             ResultSet rs = ps.executeQuery();
             AutoDAO autoDAO = new AutoDAO();
             while (rs.next()) {
                 DetalleReservaAuto da = new DetalleReservaAuto();
-                da.setIdDetalle(rs.getInt("id_detalle"));
                 da.setAuto(autoDAO.obtenerPorId(rs.getInt("id_auto")));
                 da.setFechaInicio(rs.getDate("fecha_inicio").toLocalDate());
                 da.setFechaFin(rs.getDate("fecha_fin").toLocalDate());
