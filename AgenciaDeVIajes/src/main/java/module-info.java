@@ -9,6 +9,8 @@ module org.example.agenciadeviajes {
 
     opens org.example.agenciadeviajes to javafx.fxml;
 
+    opens org.example.agenciadeviajes.model to javafx.base;
+
     opens org.example.agenciadeviajes.controller to javafx.fxml;
 
     exports org.example.agenciadeviajes;

@@ -49,14 +49,14 @@ public class LoginController {
         if (usuario != null) {
 
             // GUARDAR SESIÓN GLOBAL
-
             Sesion.iniciarSesion(usuario);
 
             lblMensaje.setStyle("-fx-text-fill: green;");
 
-            lblMensaje.setText("Bienvenido " + usuario.getNombre());
+            lblMensaje.setText("Bienvenido " + usuario.getNombre() + " [" + usuario.getRol() + "]");
 
-            abrirHome(usuario);
+            // NUEVO: Redirigir según el rol del usuario
+            abrirHomeSegunRol(usuario);
 
         } else {
 
@@ -68,26 +68,48 @@ public class LoginController {
 
     }
 
-    private void abrirHome(Usuario usuario) {
-
+    /**
+     * NUEVO: Redirige a diferentes vistas según el rol del usuario
+     */
+    private void abrirHomeSegunRol(Usuario usuario) {
         try {
+            String fxmlPath;
+            String titulo;
 
-            FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/org/example/agenciadeviajes/view/home.fxml")
-            );
+            if (usuario.esAdmin()) {
+                // Los admins van a un panel de administración
+                fxmlPath = "/org/example/agenciadeviajes/view/home-admin.fxml";
+                titulo = "Panel Admin";
+            } else {
+                // Los clientes van al home normal
+                fxmlPath = "/org/example/agenciadeviajes/view/home.fxml";
+                titulo = "Home";
+            }
 
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
             Parent root = loader.load();
 
             Stage stage = (Stage) txtCorreo.getScene().getWindow();
-
             stage.setScene(new Scene(root, 470, 530));
-
-            stage.setTitle("Home");
+            stage.setTitle(titulo);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            // Si la vista de admin no existe, abre la normal
+            System.out.println("[LoginController] Viendo home normal");
+            try {
+                FXMLLoader loader = new FXMLLoader(
+                        getClass().getResource("/org/example/agenciadeviajes/view/home.fxml")
+                );
+                Parent root = loader.load();
+                Stage stage = (Stage) txtCorreo.getScene().getWindow();
+                stage.setScene(new Scene(root, 470, 530));
+                stage.setTitle("Home");
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
         }
     }
+
     @FXML
     public void abrirRegistro() {
 

@@ -10,6 +10,7 @@ public class Usuario {
     private String correo;
     private String contrasenia;   // almacenado como hash SHA-256
     private Timestamp fechaRegistro;
+    private String rol;            // NUEVO: 'ADMIN' o 'CLIENTE'
 
     public Usuario() {}
 
@@ -21,6 +22,19 @@ public class Usuario {
         this.correo = correo;
         this.contrasenia = contrasenia;
         this.fechaRegistro = fechaRegistro;
+        this.rol = "CLIENTE"; // rol por defecto
+    }
+
+    // Constructor completo CON rol
+    public Usuario(int idUsuario, String nombre, String apellido, String correo,
+                   String contrasenia, Timestamp fechaRegistro, String rol) {
+        this.idUsuario = idUsuario;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.correo = correo;
+        this.contrasenia = contrasenia;
+        this.fechaRegistro = fechaRegistro;
+        this.rol = rol;
     }
 
     public int getIdUsuario() {
@@ -56,6 +70,21 @@ public class Usuario {
     public void setFechaRegistro(Timestamp fechaRegistro) {
         this.fechaRegistro = fechaRegistro; }
 
+    // NUEVO: getters y setters para rol
+    public String getRol() {
+        return rol; }
+    public void setRol(String rol) {
+        this.rol = rol; }
+
+    // NUEVO: métodos helper para validar rol
+    public boolean esAdmin() {
+        return "ADMIN".equalsIgnoreCase(rol);
+    }
+
+    public boolean esCliente() {
+        return "CLIENTE".equalsIgnoreCase(rol);
+    }
+
     @Override
-    public String toString() { return nombre + " " + apellido + " <" + correo + ">"; }
+    public String toString() { return nombre + " " + apellido + " <" + correo + "> [" + rol + "]"; }
 }

@@ -66,13 +66,15 @@ public class RegisterController {
         usuario.setApellido(apellido);
         usuario.setCorreo(correo);
         usuario.setContrasenia(hash);
+        // NUEVO: Establecer rol por defecto a 'CLIENTE'
+        usuario.setRol("CLIENTE");
 
         boolean registrado = usuarioDAO.insertar(usuario);
 
         if (registrado) {
 
             lblMensaje.setStyle("-fx-text-fill: green;");
-            lblMensaje.setText("Usuario registrado correctamente.");
+            lblMensaje.setText("Usuario registrado correctamente. Inicia sesión.");
 
             limpiarCampos();
 
