@@ -1,69 +1,133 @@
-Agencia de Viajes:
-Proyecto desarrollado en JavaFX y MySQL para la gestión de una agencia de viajes.
-El sistema permite a los usuarios registrarse, iniciar sesión, consultar servicios y realizar reservas de vuelos, hoteles y autos.
 
-Descripción:
-Este proyecto fue desarrollado como una aplicación de escritorio utilizando JavaFX y una base de datos MySQL.
-La aplicación simula el funcionamiento básico de una agencia de viajes, permitiendo gestionar diferentes tipos de reservas desde una sola plataforma.
-El sistema cuenta con autenticación de usuarios, consultas de vuelos, consultas de hoteles, consultas de autos, creación de reservas y visualización de reservas realizadas.
+
+
+Descripción General
+Agencia de Viajes es una aplicación desarrollada en Java que emplea JavaFX para la interfaz gráfica y MySQL como sistema de gestión de bases de datos.
+
+Funcionalidades principales
+1.  Reservas de vuelos
+2.  Reservas de hoteles
+3.  Reservas de autos
+4.  Gestión de usuarios y autenticación
+5.  Administración de catálogos
+6.  Gestión de reservaciones
+
+La aplicación está estructurada siguiendo una arquitectura por capas, separando la lógica de negocio, acceso a datos, controladores e interfaces.
 
 Tecnologías utilizadas
+1.  Java
+2.  JavaFX
+3.  MySQL
+4.  JDBC
+5.  IntelliJ IDEA
+6.  JavaDoc
 
-Java 21
-JavaFX
-MySQL
-JDBC
+Estructura del Proyecto
+El proyecto está organizado por paquetes para mantener una estructura limpia.
+
+-org.example.agenciadeviajes
+  --admin
+  --controller
+  --dao
+  --factory
+  --model
+  --strategy
+  --util
+
+Descripción de Paquetes
+
+Admin
+Este paquete integra todas las funcionalidades destinadas a los administradores del sistema. Permite gestionar información crítica sin modificar directamente la base de datos, diferenciando claramente las acciones administrativas de las normales de los clientes.
+
+1.  Agregar nuevos hoteles
+2.  Agregar vuelos
+3.  Modificar información existente
+4.  Eliminar registros
+5.  Controlar información importante del sistema
+6.  Administrar catálogos principales
+
+Sin este paquete, toda la información tendría que agregarse manualmente desde MySQL. El módulo administrativo convierte el sistema en una aplicación realmente funcional y administrable.
+
+Ejemplo de uso
+1. El administrador accede al panel administrativo
+2. Captura los datos del vuelo
+3. El controlador administra el evento
+4. El DAO guarda la información en MySQL
+5. El sistema actualiza automáticamente los datos visibles para los usuarios
+
+Controller
+Contiene los controladores JavaFX encargados de conectar la interfaz gráfica, la lógica del sistema y la base de datos, sirviendo de puente entre lo que el usuario ve y lo que el sistema hace.
+
+1.  Escuchar eventos de la interfaz
+2.  Validar información
+3.  Comunicarse con los DAO
+4.  Actualizar vistas
+5.  Navegar entre ventanas
+6.  Mostrar mensajes al usuario
+
+DAO
+Implementa el patrón DAO (Data Access Object), separando la lógica de acceso a datos del resto del sistema. Todas las consultas SQL se concentran aquí, facilitando el mantenimiento.
+
+1.  Conectarse a MySQL
+2.  Ejecutar consultas SQL
+3.  Insertar, actualizar y eliminar registros
+3.  Obtener resultados
+5.F  unciones típicas: insertar(), actualizar(), eliminar(), obtenerTodos(), buscarPorId()
+
+Model
+Contiene las entidades principales del sistema, como usuarios, vuelos, hoteles, autos y reservaciones. Cada objeto model normalmente representa una tabla en MySQL y almacena información relevante.
+
+Factory
+Centraliza y controla la creación de objetos dentro del sistema, evitando código repetido, dependencia excesiva y facilitando el mantenimiento.
+
+ Decide qué objeto crear
+ Cómo inicializarlo
+ Qué implementación devolver
+
+Ejemplo: crea automáticamente objetos de reservación según el tipo solicitado (vuelo, hotel, auto). Si en el futuro se agregan cruceros o tours, solo se modifica la Factory.
+
+Strategy
+Permite cambiar comportamientos del sistema dinámicamente sin modificar el código principal. Cada lógica (por ejemplo, distintos tipos de descuentos) se separa en clases independientes.
+
+Intercambiar algoritmos fácilmente
+Reutilizar comportamientos
+Evitar grandes bloques de if/else
+
+Util
+Contiene herramientas auxiliares reutilizables, como conexiones JDBC, validaciones, utilidades generales, configuraciones y helpers. La conexión a base de datos habitualmente se gestiona aquí.
+
+Funcionalidades del Sistema
+
+1. Inicio de Sesión: Autenticación por correo y contraseña, acceso personalizado según el usuario.
+2. Registro de Usuarios: Permite registrarse proporcionando nombre, apellido, correo y contraseña.
+3. Gestión de Vuelos: Consulta y reserva de vuelos, visualización de información de aerolínea, ciudades, fechas y horarios.
+4. Gestión de Hoteles: Consulta y reserva de hoteles, información de ubicación, fechas de hospedaje y habitaciones.
+5. Gestión de Autos: Consulta y reserva de vehículos, categorías y fechas de renta.
+6. Gestión de Reservaciones: Visualización de reservas realizadas, historial del usuario y detalles.
+
+Patrones de Diseño Utilizados
+1. DAO: Separación de lógica de acceso a datos, mejor mantenimiento, responsabilidades claras y código limpio.
+2. Factory: Creación centralizada de objetos, reutilización de código, escalabilidad y menor acoplamiento.
+3. Strategy: Flexibilidad para implementar diferentes comportamientos, mantenimiento fácil y extensible.
+
+Base de Datos
+El sistema utiliza MySQL como gestor de base de datos. Tablas principales: usuarios, vuelos, hoteles, autos, reservas, detalles de reserva, ciudades y aerolíneas.
+
+Configuración del Proyecto
+
+Java JDK 17 o superior
+MySQL Server
 Maven
 IntelliJ IDEA
 
-Funcionalidades principales
+1. Clonar el repositorio con git clone
+2. Abrir en IntelliJ IDEA la carpeta raíz del proyecto
+3. Configurar MySQL actualizando las credenciales de conexión
+4. Instalar dependencias con mvn clean install
+5. Ejecutar la aplicación desde Launcher.java o HelloApplication.java
 
-Login de usuarios:
-Los usuarios pueden iniciar sesión usando correo y contraseña.
-La contraseña se almacena en la base de datos utilizando hash SHA-256 para mayor seguridad.
 
-Registro de usuarios:
-Permite crear nuevas cuentas validando campos vacíos y correos duplicados.
+Posibles Mejoras Futuras
 
-Home principal:
-Después de iniciar sesión el usuario accede a un menú principal desde donde puede navegar a vuelos, hoteles, autos y mis reservas.
-
-Consultas:
-Consulta de vuelos
-El usuario puede consultar vuelos disponibles, buscar por origen, destino y fecha, visualizar información de aerolínea y precios, además de reservar vuelos.
-
-Consulta de hoteles:
-El usuario puede consultar hoteles disponibles, seleccionar fechas de hospedaje, seleccionar cantidad de habitaciones y realizar reservas.
-
-Consulta de autos:
-El usuario puede consultar autos disponibles, seleccionar fechas de renta y reservar autos.
-
-Reservas:
-El sistema permite generar reservas reales en la base de datos.
-Cada reserva se guarda en la tabla reservas y almacena detalles específicos según el tipo de servicio reservado.
-
-Mis Reservas:
-El usuario puede visualizar todas las reservas realizadas desde su cuenta mostrando folio, fecha, tipo de reserva y total pagado.
-También se muestran los detalles de cada reserva realizada.
-
-Carpetas y estructuras:
-La carpeta controller contiene la lógica de las interfaces JavaFX.
-La carpeta dao contiene las clases encargadas de acceder a la base de datos.
-La carpeta model contiene los modelos de las entidades del sistema.
-La carpeta util contiene utilidades generales como conexión a base de datos, sesión global y hash SHA-256.
-La carpeta view contiene los archivos .fxml de las interfaces gráficas.
-
-Características implementadas:
-Login
-Registro
-Sesión global
-Consultas de vuelos
-Consultas de hoteles
-Consultas de autos
-Reservas de vuelos
-Reservas de hoteles
-Reservas de autos
-Visualización de reservas
-Integración con MySQL
-Arquitectura DAO
-Hash de contraseñas SHA-256
+1.  Integración con APIs externas
+2.  Generación de reportes PDF
