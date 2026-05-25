@@ -4,100 +4,120 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml"
-            stylesheets="@../css/styles.css"
-            styleClass="main-background"
-            fx:controller="org.example.agenciadeviajes.controller.HotelesController">
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="org.example.agenciadeviajes.controller.HotelesController"
+           stylesheets="@../css/styles.css">
 
-    <top>
+    <Pane styleClass="page-background"/>
 
-        <VBox spacing="10"
-              styleClass="top-bar success-bar">
+    <Pane styleClass="overlay"/>
 
-            <padding>
-                <Insets top="15" right="15" bottom="15" left="15"/>
-            </padding>
+    <BorderPane>
 
-            <Label text="Consulta de Hoteles"
-                   styleClass="section-title"/>
+        <top>
 
-        </VBox>
+            <VBox spacing="5">
 
-    </top>
+                <padding>
+                    <Insets top="24" left="30"/>
+                </padding>
 
-    <center>
+                <Label text="Consulta de Hoteles"
+                       styleClass="page-title"/>
 
+<<<<<<< Updated upstream
         <VBox spacing="15"
               styleClass="panel-surface"
               VBox.vgrow="ALWAYS">
+=======
+                <Label text="Encuentra hospedajes increíbles"
+                       styleClass="page-subtitle"/>
+>>>>>>> Stashed changes
 
-            <padding>
-                <Insets top="20" right="20" bottom="20" left="20"/>
-            </padding>
+            </VBox>
 
-            <HBox spacing="10">
+        </top>
 
-                <DatePicker fx:id="dpCheckIn"
-                            promptText="Check-In"
-                            styleClass="modern-input"/>
+        <center>
 
-                <DatePicker fx:id="dpCheckOut"
-                            promptText="Check-Out"
-                            styleClass="modern-input"/>
+            <VBox alignment="CENTER"
+                  spacing="18">
 
-                <Spinner fx:id="spHabitaciones"
-                         prefWidth="120"
-                         styleClass="modern-input"/>
+                <padding>
+                    <Insets top="10" right="25" bottom="25" left="25"/>
+                </padding>
 
-            </HBox>
+                <VBox spacing="18"
+                      styleClass="glass-card"
+                      maxWidth="1180">
 
+<<<<<<< Updated upstream
             <TableView fx:id="tablaHoteles"
                        prefHeight="600"
                        VBox.vgrow="ALWAYS"
                        styleClass="modern-table">
+=======
+                    <padding>
+                        <Insets top="24" right="24" bottom="24" left="24"/>
+                    </padding>
+>>>>>>> Stashed changes
 
-                <columns>
+                    <HBox spacing="12">
 
-                    <TableColumn fx:id="colNombre"
-                                 text="Hotel"
-                                 prefWidth="180"/>
+                        <DatePicker fx:id="dpCheckIn"
+                                    promptText="Check-In"/>
 
-                    <TableColumn fx:id="colCiudad"
-                                 text="Ciudad"
+                        <DatePicker fx:id="dpCheckOut"
+                                    promptText="Check-Out"/>
+
+                        <Spinner fx:id="spHabitaciones"
                                  prefWidth="140"/>
 
-                    <TableColumn fx:id="colPais"
-                                 text="País"
-                                 prefWidth="140"/>
+                    </HBox>
 
-                    <TableColumn fx:id="colEstrellas"
-                                 text="Estrellas"
-                                 prefWidth="120"/>
+                    <TableView fx:id="tablaHoteles"
+                               prefHeight="430">
 
-                    <TableColumn fx:id="colPrecio"
-                                 text="Precio/Noche"
-                                 prefWidth="140"/>
+                        <columnResizePolicy>
+                            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                        </columnResizePolicy>
 
-                    <TableColumn fx:id="colHabitaciones"
-                                 text="Habitaciones"
-                                 prefWidth="120"/>
+                        <columns>
 
-                </columns>
+                            <TableColumn fx:id="colNombre" text="Hotel"/>
+                            <TableColumn fx:id="colCiudad" text="Ciudad"/>
+                            <TableColumn fx:id="colPais" text="País"/>
+                            <TableColumn fx:id="colEstrellas" text="Estrellas"/>
+                            <TableColumn fx:id="colPrecio" text="Precio/Noche"/>
+                            <TableColumn fx:id="colHabitaciones" text="Habitaciones"/>
 
-            </TableView>
+                        </columns>
 
-            <Button text="Reservar Hotel"
-                    prefWidth="220"
-                    onAction="#reservarHotel"
-                    styleClass="primary-button"/>
+                    </TableView>
 
-            <Button text="Volver al Home"
-                    prefWidth="220"
-                    onAction="#volverHome"
-                    styleClass="secondary-button"/>
+                    <HBox spacing="18"
+                          alignment="CENTER">
 
-        </VBox>
+                        <Button text="🏨 Reservar Hotel"
+                                prefWidth="240"
+                                prefHeight="42"
+                                onAction="#reservarHotel"
+                                styleClass="primary-btn"/>
 
-    </center>
+                        <Button text="← Volver"
+                                prefWidth="180"
+                                prefHeight="42"
+                                onAction="#volverHome"
+                                styleClass="secondary-btn"/>
 
-</BorderPane>
+                    </HBox>
+
+                </VBox>
+
+            </VBox>
+
+        </center>
+
+    </BorderPane>
+
+</StackPane>

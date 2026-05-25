@@ -168,6 +168,7 @@ public class HomeController {
 
             Stage stage =
                     (Stage) lblBienvenida.getScene().getWindow();
+            stage.setMaximized(true);
 
             stage.setScene(new Scene(root));
 

@@ -4,30 +4,28 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml"
-            stylesheets="@../css/styles.css"
-            styleClass="main-background"
-            fx:controller="org.example.agenciadeviajes.admin.AdminHomeController">
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="org.example.agenciadeviajes.admin.AdminHomeController"
+           stylesheets="@../css/styles.css">
 
-    <top>
-        <VBox spacing="10"
-              alignment="CENTER"
-              styleClass="top-bar">
+    <!-- BACKGROUND -->
 
-            <padding>
-                <Insets top="20" bottom="20"/>
-            </padding>
+    <Pane styleClass="page-background"/>
 
-            <Label text="Panel de Administración"
-                   styleClass="main-title"/>
+    <Pane styleClass="overlay"/>
 
-            <Label fx:id="lblUsuario"
-                   styleClass="welcome-label"/>
-        </VBox>
-    </top>
+    <!-- CONTENT -->
 
-    <center>
+    <VBox alignment="TOP_CENTER"
+          spacing="25">
 
+        <padding>
+            <Insets top="28" right="30" bottom="28" left="30"/>
+        </padding>
+
+        <!-- HEADER -->
+
+<<<<<<< Updated upstream
         <VBox alignment="TOP_CENTER"
               spacing="15"
               styleClass="content-container">
@@ -102,9 +100,101 @@
                         onAction="#cerrarSesion"
                         styleClass="danger-button"/>
             </HBox>
+=======
+        <VBox alignment="CENTER"
+              spacing="5">
+
+            <Label text="Panel de Administración"
+                   styleClass="page-title"/>
+
+            <Label fx:id="lblUsuario"
+                   styleClass="page-subtitle"/>
+>>>>>>> Stashed changes
 
         </VBox>
 
-    </center>
+        <!-- ADMIN PANEL -->
 
-</BorderPane>
+        <VBox alignment="CENTER"
+              spacing="18"
+              maxWidth="500"
+              styleClass="glass-card">
+
+            <padding>
+                <Insets top="30" right="35" bottom="30" left="35"/>
+            </padding>
+
+            <Button text="🏨 Hoteles"
+                    prefWidth="320"
+                    prefHeight="45"
+                    onAction="#abrirHoteles"
+                    styleClass="primary-btn"/>
+
+            <Button text="✈ Vuelos"
+                    prefWidth="320"
+                    prefHeight="45"
+                    onAction="#abrirVuelos"
+                    styleClass="primary-btn"/>
+
+            <Button text="🛫 Aerolíneas"
+                    prefWidth="320"
+                    prefHeight="45"
+                    onAction="#abrirAerolineas"
+                    styleClass="primary-btn"/>
+
+            <Button text="🚘 Autos"
+                    prefWidth="320"
+                    prefHeight="45"
+                    onAction="#abrirAutos"
+                    styleClass="primary-btn"/>
+
+            <Separator prefWidth="300"/>
+
+            <Button text="🌎 Ciudades"
+                    prefWidth="320"
+                    prefHeight="45"
+                    onAction="#abrirCiudades"
+                    styleClass="secondary-btn"/>
+
+            <Button text="🏳 Países"
+                    prefWidth="320"
+                    prefHeight="45"
+                    onAction="#abrirPaises"
+                    styleClass="secondary-btn"/>
+
+            <Button text="💱 Divisas"
+                    prefWidth="320"
+                    prefHeight="45"
+                    onAction="#abrirDivisas"
+                    styleClass="secondary-btn"/>
+
+            <Button text="👤 Usuarios"
+                    prefWidth="320"
+                    prefHeight="45"
+                    onAction="#abrirUsuarios"
+                    styleClass="secondary-btn"/>
+
+            <Separator prefWidth="300"/>
+
+            <Button text="⛔ Cerrar Sesión"
+                    prefWidth="320"
+                    prefHeight="45"
+                    onAction="#cerrarSesion"
+                    style="-fx-background-color:
+                                  linear-gradient(
+                                      to right,
+                                      #EF5350,
+                                      #C62828
+                                  );
+
+                           -fx-text-fill: white;
+
+                           -fx-font-weight: bold;
+
+                           -fx-background-radius: 16px;"/>
+
+        </VBox>
+
+    </VBox>
+
+</StackPane>

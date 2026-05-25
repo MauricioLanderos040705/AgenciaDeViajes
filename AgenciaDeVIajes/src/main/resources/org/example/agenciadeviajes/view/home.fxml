@@ -4,73 +4,207 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml"
-            stylesheets="@../css/styles.css"
-            styleClass="main-background"
-            fx:controller="org.example.agenciadeviajes.controller.HomeController">
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="org.example.agenciadeviajes.controller.HomeController"
+           stylesheets="@../css/global.css,@../css/home.css">
 
-    <top>
-        <VBox spacing="10"
-              alignment="CENTER"
-              styleClass="top-bar">
+    <!-- BACKGROUND -->
+    <Pane styleClass="home-background"/>
 
-            <padding>
-                <Insets top="20" bottom="20"/>
-            </padding>
+    <!-- OVERLAY -->
+    <Pane styleClass="home-overlay"/>
 
-            <Label text="Agencia de Viajes"
-                   styleClass="main-title"/>
+    <!-- MAIN CONTENT -->
+    <BorderPane>
 
-            <Label fx:id="lblBienvenida"
-                   styleClass="welcome-label"/>
-        </VBox>
-    </top>
+        <!-- ================================================= -->
+        <!-- NAVBAR -->
+        <!-- ================================================= -->
 
-    <center>
+        <top>
 
-        <VBox alignment="CENTER"
-              spacing="20"
-              styleClass="content-container">
+            <HBox alignment="CENTER_LEFT"
+                  styleClass="navbar">
 
-            <padding>
-                <Insets top="40"/>
-            </padding>
+                <VBox spacing="2">
 
-            <Button text="Consultar Vuelos"
-                    prefWidth="260"
-                    prefHeight="45"
-                    onAction="#abrirVuelos"
-                    styleClass="primary-button"/>
+                    <Label text="✈ Agencia de Viajes"
+                           styleClass="logo-title"/>
 
-            <Button text="Consultar Hoteles"
-                    prefWidth="260"
-                    prefHeight="45"
-                    onAction="#abrirHoteles"
-                    styleClass="primary-button"/>
+                    <Label text="Viaja más, vive más, descubre el mundo."
+                           styleClass="logo-subtitle"/>
+                </VBox>
 
-            <Button text="Consultar Autos"
-                    prefWidth="260"
-                    prefHeight="45"
-                    onAction="#abrirAutos"
-                    styleClass="primary-button"/>
+                <Region HBox.hgrow="ALWAYS"/>
 
-            <Button text="Mis Reservas"
-                    prefWidth="260"
-                    prefHeight="45"
-                    onAction="#abrirReservas"
-                    styleClass="secondary-button"/>
-            <Button text="Confirmar Reserva"
-                    prefWidth="250"
-                    onAction="#abrirConfirmarReserva"/>
+                <Button text="Cerrar Sesión"
+                        onAction="#cerrarSesion"
+                        styleClass="logout-btn"/>
 
-            <Button text="Cerrar Sesión"
-                    prefWidth="260"
-                    prefHeight="45"
-                    onAction="#cerrarSesion"
-                    styleClass="danger-button"/>
+            </HBox>
 
-        </VBox>
+        </top>
 
-    </center>
+        <!-- ================================================= -->
+        <!-- CENTER -->
+        <!-- ================================================= -->
 
-</BorderPane>
+        <center>
+
+            <VBox alignment="TOP_CENTER"
+                  spacing="24">
+
+                <padding>
+                    <Insets top="22" right="30" bottom="20" left="30"/>
+                </padding>
+
+                <!-- WELCOME -->
+
+                <VBox alignment="CENTER_LEFT"
+                      maxWidth="1200"
+                      spacing="4">
+
+                    <Label fx:id="lblBienvenida"
+                           styleClass="welcome-title"/>
+
+                    <Label text="¿Listo para tu próxima aventura?"
+                           styleClass="welcome-subtitle"/>
+
+                    <Region prefHeight="8"/>
+
+                    <Separator prefWidth="80"
+                               styleClass="blue-separator"/>
+                </VBox>
+
+                <!-- HERO CARD -->
+
+                <VBox alignment="CENTER"
+                      spacing="8"
+                      maxWidth="620"
+                      styleClass="hero-card">
+
+                    <Label text="✈"
+                           styleClass="hero-icon"/>
+
+                    <Label text="Descubre tu próximo destino"
+                           styleClass="hero-title"/>
+
+                    <Label text="Reserva vuelos, hoteles y autos en un solo lugar"
+                           styleClass="hero-subtitle"/>
+
+                </VBox>
+
+                <!-- CARDS -->
+
+                <HBox alignment="CENTER"
+                      spacing="22">
+
+                    <!-- VUELOS -->
+
+                    <VBox alignment="CENTER"
+                          styleClass="option-card"
+                          spacing="14">
+
+                        <Label text="✈"
+                               styleClass="card-icon"/>
+
+                        <Label text="Vuelos"
+                               styleClass="option-title"/>
+
+                        <Label text="Busca y reserva los mejores vuelos."
+                               styleClass="option-description"
+                               wrapText="true"/>
+
+                        <Button text="Explorar"
+                                onAction="#abrirVuelos"
+                                styleClass="primary-btn"/>
+                    </VBox>
+
+                    <!-- HOTELES -->
+
+                    <VBox alignment="CENTER"
+                          styleClass="option-card"
+                          spacing="14">
+
+                        <Label text="🏨"
+                               styleClass="card-icon"/>
+
+                        <Label text="Hoteles"
+                               styleClass="option-title"/>
+
+                        <Label text="Encuentra hospedajes increíbles."
+                               styleClass="option-description"
+                               wrapText="true"/>
+
+                        <Button text="Explorar"
+                                onAction="#abrirHoteles"
+                                styleClass="primary-btn"/>
+                    </VBox>
+
+                    <!-- AUTOS -->
+
+                    <VBox alignment="CENTER"
+                          styleClass="option-card"
+                          spacing="14">
+
+                        <Label text="🚘"
+                               styleClass="card-icon"/>
+
+                        <Label text="Autos"
+                               styleClass="option-title"/>
+
+                        <Label text="Renta autos para tu viaje."
+                               styleClass="option-description"
+                               wrapText="true"/>
+
+                        <Button text="Explorar"
+                                onAction="#abrirAutos"
+                                styleClass="primary-btn"/>
+                    </VBox>
+
+                    <!-- RESERVAS -->
+
+                    <VBox alignment="CENTER"
+                          styleClass="option-card"
+                          spacing="14">
+
+                        <Label text="📋"
+                               styleClass="card-icon"/>
+
+                        <Label text="Mis Reservas"
+                               styleClass="option-title"/>
+
+                        <Label text="Consulta tus paquetes y folios."
+                               styleClass="option-description"
+                               wrapText="true"/>
+
+                        <Button text="Ver Reservas"
+                                onAction="#abrirReservas"
+                                styleClass="primary-btn"/>
+                    </VBox>
+
+                </HBox>
+
+                <!-- CTA -->
+
+                <Button text="📅 Confirmar Reserva"
+                        onAction="#abrirConfirmarReserva"
+                        styleClass="confirm-btn"/>
+
+            </VBox>
+
+        </center>
+
+        <!-- ================================================= -->
+        <!-- FOOTER -->
+        <!-- ================================================= -->
+
+        <bottom>
+
+
+
+        </bottom>
+
+    </BorderPane>
+
+</StackPane>

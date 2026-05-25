@@ -16,7 +16,7 @@ public class HelloApplication extends Application {
                         "/org/example/agenciadeviajes/view/login.fxml"
                 )
         );
-
+        stage.setMaximized(true);
         Scene scene = new Scene(fxmlLoader.load(), 400, 350);
 
         stage.setTitle("Agencia de Viajes");

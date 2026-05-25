@@ -10,7 +10,7 @@ public class ConexionDB {
     // ── Configuración
     private static final String URL = "jdbc:mysql://localhost:3306/agencia_viajes?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=America/Mexico_City";
     private static final String USUARIO = "root";
-    private static final String PASSWORD = "";
+    private static final String PASSWORD = "mauricio";
 
     // ── Singleton
     private static ConexionDB instancia;

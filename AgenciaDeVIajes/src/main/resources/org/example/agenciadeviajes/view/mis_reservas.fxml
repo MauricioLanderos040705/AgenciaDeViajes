@@ -1,77 +1,161 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets?>
 
-<VBox spacing="25"
-      alignment="TOP_CENTER"
-      prefWidth="1020"
-      prefHeight="720"
-      stylesheets="@../css/styles.css"
-      styleClass="main-background"
-      xmlns:fx="http://javafx.com/fxml"
-      fx:controller="org.example.agenciadeviajes.controller.MisReservasController">
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="org.example.agenciadeviajes.controller.MisReservasController"
+           stylesheets="@../css/styles.css">
 
-    <padding>
-        <Insets top="30" right="40" bottom="30" left="40"/>
-    </padding>
+    <!-- BACKGROUND -->
 
-    <VBox alignment="CENTER" spacing="5">
-        <Label text="MIS RESERVAS" styleClass="main-title-dark"/>
-        <Label text="Gestiona y consulta el estado de tus itinerarios contratados" styleClass="main-subtitle"/>
+    <Pane styleClass="page-background"/>
+
+    <Pane styleClass="overlay"/>
+
+    <!-- MAIN -->
+
+    <VBox spacing="22"
+          alignment="TOP_CENTER">
+
+        <padding>
+            <Insets top="28" right="30" bottom="28" left="30"/>
+        </padding>
+
+        <!-- HEADER -->
+
+        <VBox alignment="CENTER"
+              spacing="5">
+
+            <Label text="Mis Reservas"
+                   styleClass="page-title"/>
+
+            <Label text="Consulta tus folios y paquetes contratados"
+                   styleClass="page-subtitle"/>
+
+        </VBox>
+
+        <!-- TABLE -->
+
+        <VBox spacing="16"
+              styleClass="glass-card"
+              maxWidth="1250">
+
+            <padding>
+                <Insets top="22" right="22" bottom="22" left="22"/>
+            </padding>
+
+            <Label text="Reservas Registradas"
+                   styleClass="section-title"/>
+
+            <TableView fx:id="tablaReservas"
+                       prefHeight="260">
+
+                <columnResizePolicy>
+                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                </columnResizePolicy>
+
+                <columns>
+
+                    <TableColumn fx:id="colFolio"
+                                 text="Folio"/>
+
+                    <TableColumn fx:id="colFecha"
+                                 text="Fecha"/>
+
+                    <TableColumn fx:id="colTipo"
+                                 text="Tipo"/>
+
+                    <TableColumn fx:id="colTotal"
+                                 text="Total"/>
+
+                </columns>
+
+            </TableView>
+
+        </VBox>
+
+        <!-- DETAILS -->
+
+        <HBox spacing="22"
+              alignment="CENTER">
+
+            <!-- VUELOS -->
+
+            <VBox spacing="12"
+                  prefWidth="320"
+                  styleClass="glass-card">
+
+                <padding>
+                    <Insets top="18" right="18" bottom="18" left="18"/>
+                </padding>
+
+                <Label text="✈ Vuelos"
+                       styleClass="section-title"/>
+
+                <ListView fx:id="listVuelos"
+                          prefHeight="260"/>
+
+            </VBox>
+
+            <!-- HOTELES -->
+
+            <VBox spacing="12"
+                  prefWidth="320"
+                  styleClass="glass-card">
+
+                <padding>
+                    <Insets top="18" right="18" bottom="18" left="18"/>
+                </padding>
+
+                <Label text="🏨 Hoteles"
+                       styleClass="section-title"/>
+
+                <ListView fx:id="listHoteles"
+                          prefHeight="260"/>
+
+            </VBox>
+
+            <!-- AUTOS -->
+
+            <VBox spacing="12"
+                  prefWidth="320"
+                  styleClass="glass-card">
+
+                <padding>
+                    <Insets top="18" right="18" bottom="18" left="18"/>
+                </padding>
+
+                <Label text="🚘 Autos"
+                       styleClass="section-title"/>
+
+                <ListView fx:id="listAutos"
+                          prefHeight="260"/>
+
+            </VBox>
+
+        </HBox>
+
+        <!-- BUTTONS -->
+
+        <HBox spacing="20"
+              alignment="CENTER">
+
+            <Button text="📄 Generar Ticket PDF"
+                    prefWidth="260"
+                    prefHeight="46"
+                    onAction="#generarPDF"
+                    styleClass="primary-btn"/>
+
+            <Button text="← Volver al Home"
+                    prefWidth="220"
+                    prefHeight="46"
+                    onAction="#volverHome"
+                    styleClass="secondary-btn"/>
+
+        </HBox>
+
     </VBox>
 
-    <VBox styleClass="table-container" VBox.vgrow="ALWAYS">
-        <TableView fx:id="tablaReservas"
-                   prefHeight="240"
-                   styleClass="modern-table">
-            <columns>
-                <TableColumn fx:id="colFolio" text="Folio" minWidth="120"/>
-                <TableColumn fx:id="colFecha" text="Fecha de Registro" minWidth="180"/>
-                <TableColumn fx:id="colTipo" text="Tipo de Servicio" minWidth="150"/>
-                <TableColumn fx:id="colTotal" text="Total Facturado" minWidth="140"/>
-            </columns>
-            <columnResizePolicy>
-                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
-            </columnResizePolicy>
-        </TableView>
-    </VBox>
-
-    <HBox spacing="20" alignment="CENTER" HBox.hgrow="ALWAYS">
-
-        <VBox spacing="12" styleClass="panel-surface" HBox.hgrow="ALWAYS">
-            <HBox spacing="8" alignment="CENTER_LEFT">
-                <Label text="" styleClass="panel-icon"/>
-                <Label text="Vuelos Disponibles" styleClass="subsection-title"/>
-            </HBox>
-            <ListView fx:id="listVuelos" prefHeight="180" styleClass="modern-list-view" VBox.vgrow="ALWAYS"/>
-        </VBox>
-
-        <VBox spacing="12" styleClass="panel-surface" HBox.hgrow="ALWAYS">
-            <HBox spacing="8" alignment="CENTER_LEFT">
-                <Label text="" styleClass="panel-icon"/>
-                <Label text="Hoteles Reservados" styleClass="subsection-title"/>
-            </HBox>
-            <ListView fx:id="listHoteles" prefHeight="180" styleClass="modern-list-view" VBox.vgrow="ALWAYS"/>
-        </VBox>
-
-        <VBox spacing="12" styleClass="panel-surface" HBox.hgrow="ALWAYS">
-            <HBox spacing="8" alignment="CENTER_LEFT">
-                <Label text="" styleClass="panel-icon"/>
-                <Label text="Renta de Autos" styleClass="subsection-title"/>
-            </HBox>
-            <ListView fx:id="listAutos" prefHeight="180" styleClass="modern-list-view" VBox.vgrow="ALWAYS"/>
-        </VBox>
-
-    </HBox>
-    <Button text="Generar Ticket PDF"
-            prefWidth="220"
-            onAction="#generarPDF"/>
-    <Button text="Volver al Home"
-            prefWidth="240"
-            prefHeight="40"
-            onAction="#volverHome"
-            styleClass="secondary-button"/>
-
-</VBox>
+</StackPane>

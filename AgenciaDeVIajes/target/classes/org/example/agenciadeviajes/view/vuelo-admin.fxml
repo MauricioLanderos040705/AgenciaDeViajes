@@ -4,37 +4,54 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml"
-            stylesheets="@../css/styles.css"
-            styleClass="main-background"
-            fx:controller="org.example.agenciadeviajes.admin.VueloAdminController">
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="org.example.agenciadeviajes.admin.VueloAdminController"
+           stylesheets="@../css/styles.css">
 
-    <top>
-        <VBox spacing="10"
-              alignment="CENTER"
-              styleClass="top-bar">
+    <Pane styleClass="page-background"/>
 
-            <padding>
-                <Insets top="15" right="15" bottom="15" left="15"/>
-            </padding>
+    <Pane styleClass="overlay"/>
+
+    <VBox spacing="20"
+          alignment="TOP_CENTER">
+
+        <padding>
+            <Insets top="24" right="28" bottom="24" left="28"/>
+        </padding>
+
+        <!-- HEADER -->
+
+        <VBox alignment="CENTER"
+              spacing="5">
 
             <Label text="Administrar Vuelos"
-                   styleClass="section-title"/>
+                   styleClass="page-title"/>
+
+            <Label text="Gestiona vuelos y disponibilidad"
+                   styleClass="page-subtitle"/>
 
         </VBox>
-    </top>
 
-    <center>
+        <!-- CONTENT -->
 
+<<<<<<< Updated upstream
         <VBox spacing="15"
               styleClass="panel-surface"
               VBox.vgrow="ALWAYS">
+=======
+        <VBox spacing="18"
+              maxWidth="1250"
+              styleClass="glass-card">
+>>>>>>> Stashed changes
 
             <padding>
-                <Insets top="20" right="20" bottom="20" left="20"/>
+                <Insets top="24" right="24" bottom="24" left="24"/>
             </padding>
 
+            <!-- TABLE -->
+
             <TableView fx:id="tablaVuelos"
+<<<<<<< Updated upstream
                        prefHeight="550"
                        VBox.vgrow="ALWAYS"
                        styleClass="modern-table">
@@ -80,78 +97,111 @@
                     <TableColumn fx:id="colRedondo"
                                  text="Redondo"
                                  prefWidth="70"/>
+=======
+                       prefHeight="280">
+
+                <columnResizePolicy>
+                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                </columnResizePolicy>
+
+                <columns>
+
+                    <TableColumn fx:id="colId" text="ID"/>
+                    <TableColumn fx:id="colAerolinea" text="Aerolínea"/>
+                    <TableColumn fx:id="colOrigen" text="Origen"/>
+                    <TableColumn fx:id="colDestino" text="Destino"/>
+>>>>>>> Stashed changes
 
                 </columns>
 
             </TableView>
 
-            <HBox spacing="15">
+            <!-- FORM -->
 
-                <padding>
-                    <Insets top="10"/>
-                </padding>
+            <GridPane hgap="15"
+                      vgap="15">
+
+                <columnConstraints>
+                    <ColumnConstraints percentWidth="15"/>
+                    <ColumnConstraints percentWidth="35"/>
+                    <ColumnConstraints percentWidth="15"/>
+                    <ColumnConstraints percentWidth="35"/>
+                </columnConstraints>
+
+                <!-- ROW 1 -->
 
                 <Label text="Aerolínea:"
-                       prefWidth="80"/>
+                       styleClass="section-title"
+                       GridPane.rowIndex="0"
+                       GridPane.columnIndex="0"/>
+
                 <ComboBox fx:id="cbAerolinea"
-                          prefWidth="200"/>
-
-            </HBox>
-
-            <HBox spacing="15">
+                          GridPane.rowIndex="0"
+                          GridPane.columnIndex="1"/>
 
                 <Label text="Origen:"
-                       prefWidth="80"/>
+                       styleClass="section-title"
+                       GridPane.rowIndex="0"
+                       GridPane.columnIndex="2"/>
+
                 <ComboBox fx:id="cbOrigen"
-                          prefWidth="200"/>
+                          GridPane.rowIndex="0"
+                          GridPane.columnIndex="3"/>
 
-            </HBox>
-
-            <HBox spacing="15">
+                <!-- ROW 2 -->
 
                 <Label text="Destino:"
-                       prefWidth="80"/>
+                       styleClass="section-title"
+                       GridPane.rowIndex="1"
+                       GridPane.columnIndex="0"/>
+
                 <ComboBox fx:id="cbDestino"
-                          prefWidth="200"/>
-
-            </HBox>
-
-            <HBox spacing="15">
+                          GridPane.rowIndex="1"
+                          GridPane.columnIndex="1"/>
 
                 <Label text="Salida:"
-                       prefWidth="80"/>
+                       styleClass="section-title"
+                       GridPane.rowIndex="1"
+                       GridPane.columnIndex="2"/>
+
                 <DatePicker fx:id="dpFecha"
-                            prefWidth="200"/>
+                            GridPane.rowIndex="1"
+                            GridPane.columnIndex="3"/>
 
-            </HBox>
-
-            <HBox spacing="15">
+                <!-- ROW 3 -->
 
                 <Label text="Asientos:"
-                       prefWidth="80"/>
+                       styleClass="section-title"
+                       GridPane.rowIndex="2"
+                       GridPane.columnIndex="0"/>
+
                 <TextField fx:id="txtAsientos"
-                           prefWidth="200"/>
-
-            </HBox>
-
-            <HBox spacing="15">
+                           GridPane.rowIndex="2"
+                           GridPane.columnIndex="1"/>
 
                 <Label text="Precio:"
-                       prefWidth="80"/>
+                       styleClass="section-title"
+                       GridPane.rowIndex="2"
+                       GridPane.columnIndex="2"/>
+
                 <TextField fx:id="txtPrecio"
-                           prefWidth="200"/>
+                           GridPane.rowIndex="2"
+                           GridPane.columnIndex="3"/>
 
-            </HBox>
-
-            <HBox spacing="15">
+                <!-- ROW 4 -->
 
                 <Label text="Divisa:"
-                       prefWidth="80"/>
+                       styleClass="section-title"
+                       GridPane.rowIndex="3"
+                       GridPane.columnIndex="0"/>
+
                 <ComboBox fx:id="cbDivisa"
-                          prefWidth="200"/>
+                          GridPane.rowIndex="3"
+                          GridPane.columnIndex="1"/>
 
-            </HBox>
+            </GridPane>
 
+<<<<<<< Updated upstream
             <HBox spacing="15">
 
                 <Label text="¿Redondo?"
@@ -162,36 +212,51 @@
             </HBox>
 
             <HBox spacing="10">
+=======
+            <!-- BUTTONS -->
+>>>>>>> Stashed changes
 
-                <padding>
-                    <Insets top="15"/>
-                </padding>
+            <HBox spacing="16"
+                  alignment="CENTER">
 
                 <Button fx:id="btnCrear"
-                        text="Crear"
-                        prefWidth="100"
+                        text="➕ Crear"
+                        prefWidth="150"
+                        prefHeight="42"
                         onAction="#crearVuelo"
-                        styleClass="primary-button"/>
+                        styleClass="primary-btn"/>
 
                 <Button fx:id="btnActualizar"
-                        text="Actualizar"
-                        prefWidth="100"
+                        text="✏ Actualizar"
+                        prefWidth="150"
+                        prefHeight="42"
                         onAction="#actualizarVuelo"
-                        styleClass="secondary-button"
+                        styleClass="secondary-btn"
                         disable="true"/>
 
                 <Button fx:id="btnEliminar"
-                        text="Eliminar"
-                        prefWidth="100"
+                        text="🗑 Eliminar"
+                        prefWidth="150"
+                        prefHeight="42"
                         onAction="#eliminarVuelo"
-                        styleClass="danger-button"
-                        disable="true"/>
+                        disable="true"
+                        style="-fx-background-color:
+                                      linear-gradient(
+                                          to right,
+                                          #EF5350,
+                                          #C62828
+                                      );
+
+                               -fx-text-fill: white;
+
+                               -fx-font-weight: bold;"/>
 
                 <Button fx:id="btnLimpiar"
-                        text="Limpiar"
-                        prefWidth="100"
+                        text="🧹 Limpiar"
+                        prefWidth="150"
+                        prefHeight="42"
                         onAction="#limpiar"
-                        styleClass="secondary-button"/>
+                        styleClass="secondary-btn"/>
 
                 <Separator prefWidth="30"/>
 
@@ -205,6 +270,6 @@
 
         </VBox>
 
-    </center>
+    </VBox>
 
-</BorderPane>
+</StackPane>

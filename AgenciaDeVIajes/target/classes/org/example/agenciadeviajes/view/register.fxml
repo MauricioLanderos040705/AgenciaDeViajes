@@ -2,53 +2,105 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER"
-      spacing="12"
-      stylesheets="@../css/styles.css"
-      styleClass="auth-container"
-      xmlns:fx="http://javafx.com/fxml"
-      fx:controller="org.example.agenciadeviajes.controller.RegisterController">
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="org.example.agenciadeviajes.controller.RegisterController"
+           stylesheets="@../css/styles.css">
 
-    <padding>
-        <Insets top="30" right="30" bottom="30" left="30"/>
-    </padding>
+    <!-- BACKGROUND -->
 
-    <Label text="Registro de Usuario"
-           styleClass="auth-title"/>
+    <Pane styleClass="page-background"/>
 
-    <TextField fx:id="txtNombre"
-               promptText="Nombre"
-               prefWidth="320"
-               styleClass="modern-input"/>
+    <Pane styleClass="overlay"/>
 
-    <TextField fx:id="txtApellido"
-               promptText="Apellido"
-               prefWidth="320"
-               styleClass="modern-input"/>
+    <!-- CONTENT -->
 
-    <TextField fx:id="txtCorreo"
-               promptText="Correo"
-               prefWidth="320"
-               styleClass="modern-input"/>
+    <VBox alignment="CENTER">
 
-    <PasswordField fx:id="txtPassword"
-                   promptText="Contraseña"
-                   prefWidth="320"
-                   styleClass="modern-input"/>
+        <VBox alignment="CENTER"
+              spacing="18"
+              maxWidth="450"
+              styleClass="glass-card">
 
-    <Button text="Registrarse"
-            prefWidth="220"
-            onAction="#registrarUsuario"
-            styleClass="primary-button"/>
+            <padding>
+                <Insets top="32" right="35" bottom="32" left="35"/>
+            </padding>
 
-    <Button text="Volver al Login"
-            prefWidth="220"
-            onAction="#volverLogin"
-            styleClass="secondary-button"/>
+            <!-- ICON -->
 
-    <Label fx:id="lblMensaje"
-           styleClass="info-label"/>
+            <Label text="🌍"
+                   style="-fx-font-size: 56px;"/>
 
-</VBox>
+            <!-- TITLES -->
+
+            <VBox alignment="CENTER"
+                  spacing="5">
+
+                <Label text="Crear Cuenta"
+                       styleClass="page-title"/>
+
+                <Label text="Regístrate para comenzar a reservar"
+                       styleClass="page-subtitle"/>
+
+            </VBox>
+
+            <!-- FORM -->
+
+            <VBox spacing="13"
+                  alignment="CENTER">
+
+                <TextField fx:id="txtNombre"
+                           promptText="Nombre"
+                           prefWidth="320"
+                           prefHeight="42"/>
+
+                <TextField fx:id="txtApellido"
+                           promptText="Apellido"
+                           prefWidth="320"
+                           prefHeight="42"/>
+
+                <TextField fx:id="txtCorreo"
+                           promptText="Correo electrónico"
+                           prefWidth="320"
+                           prefHeight="42"/>
+
+                <PasswordField fx:id="txtPassword"
+                               promptText="Contraseña"
+                               prefWidth="320"
+                               prefHeight="42"/>
+
+            </VBox>
+
+            <!-- BUTTONS -->
+
+            <VBox spacing="12"
+                  alignment="CENTER">
+
+                <Button text="Registrarse"
+                        prefWidth="240"
+                        prefHeight="44"
+                        onAction="#registrarUsuario"
+                        styleClass="primary-btn"/>
+
+                <Button text="← Volver al Login"
+                        prefWidth="240"
+                        prefHeight="44"
+                        onAction="#volverLogin"
+                        styleClass="secondary-btn"/>
+
+            </VBox>
+
+            <!-- MESSAGE -->
+
+            <Label fx:id="lblMensaje"
+                   wrapText="true"
+                   style="-fx-text-fill: #E3F2FD;
+                          -fx-font-size: 13px;
+                          -fx-font-weight: bold;"/>
+
+        </VBox>
+
+    </VBox>
+
+</StackPane>

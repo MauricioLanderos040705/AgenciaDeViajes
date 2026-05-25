@@ -203,7 +203,7 @@ public class VuelosController {
             );
 
             mostrarExito(
-                    "Vuelo agregado al viaje."
+                    "Vuelo agregado al viaje. Continuar en la pantalla Confimar Reservas."
             );
 
         } catch (Exception e) {

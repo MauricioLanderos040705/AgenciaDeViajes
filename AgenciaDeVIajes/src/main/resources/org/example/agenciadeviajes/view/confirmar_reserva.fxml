@@ -1,110 +1,170 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox spacing="18"
-      alignment="CENTER"
-      prefWidth="900"
-      prefHeight="700"
-      stylesheets="@../css/styles.css"
-      styleClass="main-background"
-      xmlns:fx="http://javafx.com/fxml"
-      fx:controller="org.example.agenciadeviajes.controller.ConfirmarReservaController">
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="org.example.agenciadeviajes.controller.ConfirmarReservaController"
+           stylesheets="@../css/styles.css">
 
+    <!-- BACKGROUND -->
 
+    <Pane styleClass="page-background"/>
 
-    <!-- TITULO -->
+    <Pane styleClass="overlay"/>
 
-    <Label text="CONFIRMAR RESERVA"
-           styleClass="main-title-dark"/>
+    <!-- CONTENT -->
 
-    <!-- INFO -->
+    <VBox alignment="TOP_CENTER"
+          spacing="22">
 
-    <VBox spacing="6"
-          alignment="CENTER"
-          styleClass="panel-surface">
+        <padding>
+            <Insets top="28" right="30" bottom="28" left="30"/>
+        </padding>
 
-        <Label fx:id="lblTipo"
-               styleClass="subsection-title"/>
+        <!-- HEADER -->
 
-        <Label fx:id="lblTotal"
-               styleClass="reservation-total"/>
+        <VBox alignment="CENTER"
+              spacing="5">
+
+            <Label text="Confirmar Reserva"
+                   styleClass="page-title"/>
+
+            <Label text="Revisa cuidadosamente tu paquete antes de finalizar"
+                   styleClass="page-subtitle"/>
+
+        </VBox>
+
+        <!-- SUMMARY -->
+
+        <HBox spacing="20"
+              alignment="CENTER">
+
+            <!-- TYPE -->
+
+            <VBox alignment="CENTER"
+                  spacing="8"
+                  prefWidth="280"
+                  styleClass="glass-card">
+
+                <padding>
+                    <Insets top="20" right="20" bottom="20" left="20"/>
+                </padding>
+
+                <Label text="Tipo de Reserva"
+                       styleClass="section-title"/>
+
+                <Label fx:id="lblTipo"
+                       style="-fx-font-size: 20px;
+                              -fx-font-weight: bold;
+                              -fx-text-fill: white;"/>
+
+            </VBox>
+
+            <!-- TOTAL -->
+
+            <VBox alignment="CENTER"
+                  spacing="8"
+                  prefWidth="280"
+                  styleClass="glass-card">
+
+                <padding>
+                    <Insets top="20" right="20" bottom="20" left="20"/>
+                </padding>
+
+                <Label text="Total"
+                       styleClass="section-title"/>
+
+                <Label fx:id="lblTotal"
+                       style="-fx-font-size: 34px;
+                              -fx-font-weight: bold;
+                              -fx-text-fill: #4FC3F7;"/>
+
+            </VBox>
+
+        </HBox>
+
+        <!-- LISTS -->
+
+        <HBox spacing="22"
+              alignment="CENTER">
+
+            <!-- VUELOS -->
+
+            <VBox spacing="12"
+                  prefWidth="300"
+                  styleClass="glass-card">
+
+                <padding>
+                    <Insets top="18" right="18" bottom="18" left="18"/>
+                </padding>
+
+                <Label text="✈ Vuelos"
+                       styleClass="section-title"/>
+
+                <ListView fx:id="listVuelos"
+                          prefHeight="300"/>
+
+            </VBox>
+
+            <!-- HOTELES -->
+
+            <VBox spacing="12"
+                  prefWidth="300"
+                  styleClass="glass-card">
+
+                <padding>
+                    <Insets top="18" right="18" bottom="18" left="18"/>
+                </padding>
+
+                <Label text="🏨 Hoteles"
+                       styleClass="section-title"/>
+
+                <ListView fx:id="listHoteles"
+                          prefHeight="300"/>
+
+            </VBox>
+
+            <!-- AUTOS -->
+
+            <VBox spacing="12"
+                  prefWidth="300"
+                  styleClass="glass-card">
+
+                <padding>
+                    <Insets top="18" right="18" bottom="18" left="18"/>
+                </padding>
+
+                <Label text="🚘 Autos"
+                       styleClass="section-title"/>
+
+                <ListView fx:id="listAutos"
+                          prefHeight="300"/>
+
+            </VBox>
+
+        </HBox>
+
+        <!-- BUTTONS -->
+
+        <HBox spacing="20"
+              alignment="CENTER">
+
+            <Button text="✔ Finalizar Reserva"
+                    prefWidth="260"
+                    prefHeight="46"
+                    onAction="#finalizarReserva"
+                    styleClass="success-btn"/>
+
+            <Button text="← Volver al Home"
+                    prefWidth="220"
+                    prefHeight="46"
+                    onAction="#volverHome"
+                    styleClass="secondary-btn"/>
+
+        </HBox>
 
     </VBox>
 
-    <!-- LISTAS -->
-
-    <HBox spacing="20"
-          alignment="CENTER">
-
-        <!-- VUELOS -->
-
-        <VBox spacing="10"
-              alignment="TOP_CENTER"
-              styleClass="panel-surface">
-
-            <Label text="Vuelos"
-                   styleClass="subsection-title"/>
-
-            <ListView fx:id="listVuelos"
-                      prefWidth="250"
-                      prefHeight="250"
-                      styleClass="modern-list"/>
-
-        </VBox>
-
-        <!-- HOTELES -->
-
-        <VBox spacing="10"
-              alignment="TOP_CENTER"
-              styleClass="panel-surface">
-
-            <Label text="Hoteles"
-                   styleClass="subsection-title"/>
-
-            <ListView fx:id="listHoteles"
-                      prefWidth="250"
-                      prefHeight="250"
-                      styleClass="modern-list"/>
-
-        </VBox>
-
-        <!-- AUTOS -->
-
-        <VBox spacing="10"
-              alignment="TOP_CENTER"
-              styleClass="panel-surface">
-
-            <Label text="Autos"
-                   styleClass="subsection-title"/>
-
-            <ListView fx:id="listAutos"
-                      prefWidth="250"
-                      prefHeight="250"
-                      styleClass="modern-list"/>
-
-        </VBox>
-
-    </HBox>
-
-    <!-- BOTONES -->
-
-    <VBox spacing="12"
-          alignment="CENTER">
-
-        <Button text="FINALIZAR RESERVA"
-                prefWidth="260"
-                prefHeight="45"
-                onAction="#finalizarReserva"
-                styleClass="success-button"/>
-
-        <Button text="Volver al Home"
-                prefWidth="260"
-                prefHeight="45"
-                onAction="#volverHome"
-                styleClass="secondary-button"/>
-
-    </VBox>
-
-</VBox>
+</StackPane>

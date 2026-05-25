@@ -90,6 +90,7 @@ public class LoginController {
             Parent root = loader.load();
 
             Stage stage = (Stage) txtCorreo.getScene().getWindow();
+            
             stage.setScene(new Scene(root, 900, 600));
             stage.setTitle(titulo);
             System.out.println("[LoginController] Vista cargada exitosamente");

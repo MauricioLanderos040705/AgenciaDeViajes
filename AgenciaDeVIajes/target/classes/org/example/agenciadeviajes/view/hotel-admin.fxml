@@ -4,58 +4,71 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml"
-            stylesheets="@../css/styles.css"
-            styleClass="main-background"
-            fx:controller="org.example.agenciadeviajes.admin.HotelAdminController">
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="org.example.agenciadeviajes.admin.HotelAdminController"
+           stylesheets="@../css/styles.css">
 
-    <top>
-        <VBox spacing="10"
-              alignment="CENTER"
-              styleClass="top-bar">
+    <Pane styleClass="page-background"/>
 
-            <padding>
-                <Insets top="15" right="15" bottom="15" left="15"/>
-            </padding>
+    <Pane styleClass="overlay"/>
+
+    <VBox spacing="20"
+          alignment="TOP_CENTER">
+
+        <padding>
+            <Insets top="24" right="28" bottom="24" left="28"/>
+        </padding>
+
+        <!-- HEADER -->
+
+        <VBox alignment="CENTER"
+              spacing="5">
 
             <Label text="Administrar Hoteles"
-                   styleClass="section-title"/>
+                   styleClass="page-title"/>
+
+            <Label text="Gestiona hoteles y hospedajes"
+                   styleClass="page-subtitle"/>
 
         </VBox>
-    </top>
 
-    <center>
+        <!-- CONTENT -->
 
+<<<<<<< Updated upstream
         <VBox spacing="15"
               styleClass="panel-surface"
               VBox.vgrow="ALWAYS">
+=======
+        <VBox spacing="18"
+              maxWidth="1200"
+              styleClass="glass-card">
+>>>>>>> Stashed changes
 
             <padding>
-                <Insets top="20" right="20" bottom="20" left="20"/>
+                <Insets top="24" right="24" bottom="24" left="24"/>
             </padding>
 
+            <!-- TABLE -->
+
             <TableView fx:id="tablaHoteles"
+<<<<<<< Updated upstream
                        prefHeight="550"
                        VBox.vgrow="ALWAYS"
                        styleClass="modern-table">
+=======
+                       prefHeight="280">
+
+                <columnResizePolicy>
+                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                </columnResizePolicy>
+>>>>>>> Stashed changes
 
                 <columns>
 
-                    <TableColumn fx:id="colId"
-                                 text="ID"
-                                 prefWidth="50"/>
-
-                    <TableColumn fx:id="colNombre"
-                                 text="Nombre"
-                                 prefWidth="130"/>
-
-                    <TableColumn fx:id="colCiudad"
-                                 text="Ciudad"
-                                 prefWidth="100"/>
-
-                    <TableColumn fx:id="colEstrellas"
-                                 text="Estrellas"
-                                 prefWidth="70"/>
+                    <TableColumn fx:id="colId" text="ID"/>
+                    <TableColumn fx:id="colNombre" text="Nombre"/>
+                    <TableColumn fx:id="colCiudad" text="Ciudad"/>
+                    <TableColumn fx:id="colEstrellas" text="Estrellas"/>
 
                     <TableColumn fx:id="colPrecio"
                                  text="Precio/Noche"
@@ -65,55 +78,72 @@
 
             </TableView>
 
-            <HBox spacing="15">
+            <!-- FORM -->
 
-                <padding>
-                    <Insets top="10"/>
-                </padding>
+            <GridPane hgap="15"
+                      vgap="15">
+
+                <columnConstraints>
+                    <ColumnConstraints percentWidth="15"/>
+                    <ColumnConstraints percentWidth="35"/>
+                    <ColumnConstraints percentWidth="15"/>
+                    <ColumnConstraints percentWidth="35"/>
+                </columnConstraints>
+
+                <!-- ROW 1 -->
 
                 <Label text="Nombre:"
-                       prefWidth="80"/>
+                       styleClass="section-title"
+                       GridPane.rowIndex="0"
+                       GridPane.columnIndex="0"/>
+
                 <TextField fx:id="txtNombre"
-                           prefWidth="200"/>
-
-            </HBox>
-
-            <HBox spacing="15">
+                           GridPane.rowIndex="0"
+                           GridPane.columnIndex="1"/>
 
                 <Label text="Ciudad:"
-                       prefWidth="80"/>
+                       styleClass="section-title"
+                       GridPane.rowIndex="0"
+                       GridPane.columnIndex="2"/>
+
                 <ComboBox fx:id="cbCiudad"
-                          prefWidth="200"/>
+                          GridPane.rowIndex="0"
+                          GridPane.columnIndex="3"/>
 
-            </HBox>
-
-            <HBox spacing="15">
+                <!-- ROW 2 -->
 
                 <Label text="Estrellas:"
-                       prefWidth="80"/>
+                       styleClass="section-title"
+                       GridPane.rowIndex="1"
+                       GridPane.columnIndex="0"/>
+
                 <Spinner fx:id="spEstrellas"
-                         prefWidth="200"/>
-
-            </HBox>
-
-            <HBox spacing="15">
+                         GridPane.rowIndex="1"
+                         GridPane.columnIndex="1"/>
 
                 <Label text="Precio:"
-                       prefWidth="80"/>
+                       styleClass="section-title"
+                       GridPane.rowIndex="1"
+                       GridPane.columnIndex="2"/>
+
                 <TextField fx:id="txtPrecio"
-                           prefWidth="200"/>
+                           GridPane.rowIndex="1"
+                           GridPane.columnIndex="3"/>
 
-            </HBox>
-
-            <HBox spacing="15">
+                <!-- ROW 3 -->
 
                 <Label text="Divisa:"
-                       prefWidth="80"/>
+                       styleClass="section-title"
+                       GridPane.rowIndex="2"
+                       GridPane.columnIndex="0"/>
+
                 <ComboBox fx:id="cbDivisa"
-                          prefWidth="200"/>
+                          GridPane.rowIndex="2"
+                          GridPane.columnIndex="1"/>
 
-            </HBox>
+            </GridPane>
 
+<<<<<<< Updated upstream
             <HBox spacing="15">
 
                 <Label text="Habitaciones:"
@@ -124,36 +154,51 @@
             </HBox>
 
             <HBox spacing="10">
+=======
+            <!-- BUTTONS -->
+>>>>>>> Stashed changes
 
-                <padding>
-                    <Insets top="15"/>
-                </padding>
+            <HBox spacing="16"
+                  alignment="CENTER">
 
                 <Button fx:id="btnCrear"
-                        text="Crear"
-                        prefWidth="100"
+                        text="➕ Crear"
+                        prefWidth="150"
+                        prefHeight="42"
                         onAction="#crearHotel"
-                        styleClass="primary-button"/>
+                        styleClass="primary-btn"/>
 
                 <Button fx:id="btnActualizar"
-                        text="Actualizar"
-                        prefWidth="100"
+                        text="✏ Actualizar"
+                        prefWidth="150"
+                        prefHeight="42"
                         onAction="#actualizarHotel"
-                        styleClass="secondary-button"
+                        styleClass="secondary-btn"
                         disable="true"/>
 
                 <Button fx:id="btnEliminar"
-                        text="Eliminar"
-                        prefWidth="100"
+                        text="🗑 Eliminar"
+                        prefWidth="150"
+                        prefHeight="42"
                         onAction="#eliminarHotel"
-                        styleClass="danger-button"
-                        disable="true"/>
+                        disable="true"
+                        style="-fx-background-color:
+                                      linear-gradient(
+                                          to right,
+                                          #EF5350,
+                                          #C62828
+                                      );
+
+                               -fx-text-fill: white;
+
+                               -fx-font-weight: bold;"/>
 
                 <Button fx:id="btnLimpiar"
-                        text="Limpiar"
-                        prefWidth="100"
+                        text="🧹 Limpiar"
+                        prefWidth="150"
+                        prefHeight="42"
                         onAction="#limpiar"
-                        styleClass="secondary-button"/>
+                        styleClass="secondary-btn"/>
 
                 <Separator prefWidth="30"/>
 
@@ -167,6 +212,6 @@
 
         </VBox>
 
-    </center>
+    </VBox>
 
-</BorderPane>
+</StackPane>

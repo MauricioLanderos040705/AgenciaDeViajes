@@ -228,7 +228,7 @@ public class HotelesController {
             );
 
             mostrarExito(
-                    "Hotel agregado al viaje."
+                    "Hotel agregado al viaje. Continuar en la pantalla Confimar Reservas."
             );
 
         } catch (Exception e) {

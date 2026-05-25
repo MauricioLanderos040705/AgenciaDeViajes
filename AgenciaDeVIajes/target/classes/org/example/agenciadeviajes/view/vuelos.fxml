@@ -4,56 +4,61 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml"
-            stylesheets="@../css/styles.css"
-            styleClass="main-background"
-            fx:controller="org.example.agenciadeviajes.controller.VuelosController">
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="org.example.agenciadeviajes.controller.VuelosController"
+           stylesheets="@../css/styles.css">
 
-    <top>
+    <Pane styleClass="page-background"/>
 
-        <VBox spacing="10"
-              styleClass="top-bar">
+    <Pane styleClass="overlay"/>
 
-            <padding>
-                <Insets top="15" right="15" bottom="15" left="15"/>
-            </padding>
+    <BorderPane>
 
-            <Label text="Consulta de Vuelos"
-                   styleClass="section-title"/>
+        <top>
 
-        </VBox>
+            <VBox spacing="5">
 
-    </top>
+                <padding>
+                    <Insets top="24" left="30"/>
+                </padding>
 
-    <center>
+                <Label text="Consulta de Vuelos"
+                       styleClass="page-title"/>
 
+<<<<<<< Updated upstream
         <VBox spacing="15"
               styleClass="panel-surface"
               VBox.vgrow="ALWAYS">
+=======
+                <Label text="Explora vuelos disponibles para tu viaje"
+                       styleClass="page-subtitle"/>
+>>>>>>> Stashed changes
 
-            <padding>
-                <Insets top="20" right="20" bottom="20" left="20"/>
-            </padding>
+            </VBox>
 
+<<<<<<< Updated upstream
             <TableView fx:id="tablaVuelos"
                        prefHeight="600"
                        VBox.vgrow="ALWAYS"
                        styleClass="modern-table">
+=======
+        </top>
+>>>>>>> Stashed changes
 
-                <columns>
+        <center>
 
-                    <TableColumn fx:id="colAerolinea"
-                                 text="Aerolínea"
-                                 prefWidth="140"/>
+            <VBox alignment="CENTER"
+                  spacing="18">
 
-                    <TableColumn fx:id="colOrigen"
-                                 text="Origen"
-                                 prefWidth="120"/>
+                <padding>
+                    <Insets top="10" right="25" bottom="25" left="25"/>
+                </padding>
 
-                    <TableColumn fx:id="colDestino"
-                                 text="Destino"
-                                 prefWidth="120"/>
+                <VBox spacing="18"
+                      styleClass="glass-card"
+                      maxWidth="1150">
 
+<<<<<<< Updated upstream
                     <TableColumn fx:id="colSalida"
                                  text="Fecha Salida"
                                  prefWidth="150"/>
@@ -79,21 +84,55 @@
                                  prefWidth="80"/>
 
                 </columns>
+=======
+                    <padding>
+                        <Insets top="24" right="24" bottom="24" left="24"/>
+                    </padding>
 
-            </TableView>
+                    <TableView fx:id="tablaVuelos"
+                               prefHeight="480">
 
-            <Button text="Reservar Vuelo"
-                    prefWidth="220"
-                    onAction="#reservarVuelo"
-                    styleClass="primary-button"/>
+                        <columnResizePolicy>
+                            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                        </columnResizePolicy>
 
-            <Button text="Volver al Home"
-                    prefWidth="220"
-                    onAction="#volverHome"
-                    styleClass="secondary-button"/>
+                        <columns>
+>>>>>>> Stashed changes
 
-        </VBox>
+                            <TableColumn fx:id="colAerolinea" text="Aerolínea"/>
+                            <TableColumn fx:id="colOrigen" text="Origen"/>
+                            <TableColumn fx:id="colDestino" text="Destino"/>
+                            <TableColumn fx:id="colSalida" text="Salida"/>
+                            <TableColumn fx:id="colPrecio" text="Precio"/>
+                            <TableColumn fx:id="colAsientos" text="Asientos"/>
 
-    </center>
+                        </columns>
 
-</BorderPane>
+                    </TableView>
+
+                    <HBox spacing="18"
+                          alignment="CENTER">
+
+                        <Button text="✈ Reservar Vuelo"
+                                prefWidth="240"
+                                prefHeight="42"
+                                onAction="#reservarVuelo"
+                                styleClass="primary-btn"/>
+
+                        <Button text="← Volver"
+                                prefWidth="180"
+                                prefHeight="42"
+                                onAction="#volverHome"
+                                styleClass="secondary-btn"/>
+
+                    </HBox>
+
+                </VBox>
+
+            </VBox>
+
+        </center>
+
+    </BorderPane>
+
+</StackPane>

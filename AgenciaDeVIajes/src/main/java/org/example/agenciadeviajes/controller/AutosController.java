@@ -197,7 +197,7 @@ public class AutosController {
             );
 
             mostrarExito(
-                    "Auto agregado al viaje."
+                    "Auto agregado al viaje. Continuar en la pantalla Confimar Reservas."
             );
 
         } catch (Exception e) {

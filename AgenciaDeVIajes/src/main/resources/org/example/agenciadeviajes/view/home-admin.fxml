@@ -4,107 +4,120 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml"
-            stylesheets="@../css/styles.css"
-            styleClass="main-background"
-            fx:controller="org.example.agenciadeviajes.admin.AdminHomeController">
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="org.example.agenciadeviajes.admin.AdminHomeController"
+           stylesheets="@../css/styles.css">
 
-    <top>
-        <VBox spacing="10"
-              alignment="CENTER"
-              styleClass="top-bar">
+    <!-- BACKGROUND -->
 
-            <padding>
-                <Insets top="20" bottom="20"/>
-            </padding>
+    <Pane styleClass="page-background"/>
+
+    <Pane styleClass="overlay"/>
+
+    <!-- CONTENT -->
+
+    <VBox alignment="TOP_CENTER"
+          spacing="25">
+
+        <padding>
+            <Insets top="28" right="30" bottom="28" left="30"/>
+        </padding>
+
+        <!-- HEADER -->
+
+        <VBox alignment="CENTER"
+              spacing="5">
 
             <Label text="Panel de Administración"
-                   styleClass="main-title"/>
+                   styleClass="page-title"/>
 
             <Label fx:id="lblUsuario"
-                   styleClass="welcome-label"/>
+                   styleClass="page-subtitle"/>
+
         </VBox>
-    </top>
 
-    <center>
+        <!-- ADMIN PANEL -->
 
-        <VBox alignment="TOP_CENTER"
-              spacing="15"
-              styleClass="content-container">
+        <VBox alignment="CENTER"
+              spacing="18"
+              maxWidth="500"
+              styleClass="glass-card">
 
             <padding>
-                <Insets top="30" left="20" right="20" bottom="20"/>
+                <Insets top="30" right="35" bottom="30" left="35"/>
             </padding>
 
-            <HBox spacing="15" alignment="CENTER">
-                <Button text="Hoteles"
-                        prefWidth="150"
-                        prefHeight="40"
-                        onAction="#abrirHoteles"
-                        styleClass="primary-button"/>
-                <Button text="Vuelos"
-                        prefWidth="150"
-                        prefHeight="40"
-                        onAction="#abrirVuelos"
-                        styleClass="primary-button"/>
-                <Button text="Aerolíneas"
-                        prefWidth="150"
-                        prefHeight="40"
-                        onAction="#abrirAerolineas"
-                        styleClass="primary-button"/>
-            </HBox>
+            <Button text="🏨 Hoteles"
+                    prefWidth="320"
+                    prefHeight="45"
+                    onAction="#abrirHoteles"
+                    styleClass="primary-btn"/>
 
-            <HBox spacing="15" alignment="CENTER">
-                <Button text="Autos"
-                        prefWidth="150"
-                        prefHeight="40"
-                        onAction="#abrirAutos"
-                        styleClass="primary-button"/>
-                <Button text="Ciudades"
-                        prefWidth="150"
-                        prefHeight="40"
-                        onAction="#abrirCiudades"
-                        styleClass="secondary-button"/>
-                <Button text="Países"
-                        prefWidth="150"
-                        prefHeight="40"
-                        onAction="#abrirPaises"
-                        styleClass="secondary-button"/>
-            </HBox>
+            <Button text="✈ Vuelos"
+                    prefWidth="320"
+                    prefHeight="45"
+                    onAction="#abrirVuelos"
+                    styleClass="primary-btn"/>
 
-            <HBox spacing="15" alignment="CENTER">
-                <Button text="Divisas"
-                        prefWidth="150"
-                        prefHeight="40"
-                        onAction="#abrirDivisas"
-                        styleClass="secondary-button"/>
-                <Button text="Categorías Autos"
-                        prefWidth="150"
-                        prefHeight="40"
-                        onAction="#abrirCategorias"
-                        styleClass="secondary-button"/>
-                <Button text="Modelos Autos"
-                        prefWidth="150"
-                        prefHeight="40"
-                        onAction="#abrirModelos"
-                        styleClass="secondary-button"/>
-            </HBox>
+            <Button text="🛫 Aerolíneas"
+                    prefWidth="320"
+                    prefHeight="45"
+                    onAction="#abrirAerolineas"
+                    styleClass="primary-btn"/>
 
-            <HBox spacing="15" alignment="CENTER">
-                <Button text="Proveedores Autos"
-                        prefWidth="150"
-                        prefHeight="40"
-                        onAction="#abrirProveedores"
-                        styleClass="secondary-button"/>
-                <Button text="Cerrar Sesión"
-                        prefWidth="150"
-                        prefHeight="40"
-                        onAction="#cerrarSesion"
-                        styleClass="danger-button"/>
-            </HBox>
+            <Button text="🚘 Autos"
+                    prefWidth="320"
+                    prefHeight="45"
+                    onAction="#abrirAutos"
+                    styleClass="primary-btn"/>
+
+            <Separator prefWidth="300"/>
+
+            <Button text="🌎 Ciudades"
+                    prefWidth="320"
+                    prefHeight="45"
+                    onAction="#abrirCiudades"
+                    styleClass="secondary-btn"/>
+
+            <Button text="🏳 Países"
+                    prefWidth="320"
+                    prefHeight="45"
+                    onAction="#abrirPaises"
+                    styleClass="secondary-btn"/>
+
+            <Button text="💱 Divisas"
+                    prefWidth="320"
+                    prefHeight="45"
+                    onAction="#abrirDivisas"
+                    styleClass="secondary-btn"/>
+
+            <Button text="👤 Usuarios"
+                    prefWidth="320"
+                    prefHeight="45"
+                    onAction="#abrirUsuarios"
+                    styleClass="secondary-btn"/>
+
+            <Separator prefWidth="300"/>
+
+            <Button text="⛔ Cerrar Sesión"
+                    prefWidth="320"
+                    prefHeight="45"
+                    onAction="#cerrarSesion"
+                    style="-fx-background-color:
+                                  linear-gradient(
+                                      to right,
+                                      #EF5350,
+                                      #C62828
+                                  );
+
+                           -fx-text-fill: white;
+
+                           -fx-font-weight: bold;
+
+                           -fx-background-radius: 16px;"/>
 
         </VBox>
 
-    </center>
+    </VBox>
 
-</BorderPane>
+</StackPane>

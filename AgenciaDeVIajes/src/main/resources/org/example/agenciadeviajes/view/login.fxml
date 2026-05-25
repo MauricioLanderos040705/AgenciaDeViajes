@@ -2,43 +2,95 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER"
-      spacing="15"
-      stylesheets="@../css/styles.css"
-      styleClass="auth-container"
-      xmlns:fx="http://javafx.com/fxml"
-      fx:controller="org.example.agenciadeviajes.controller.LoginController">
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="org.example.agenciadeviajes.controller.LoginController"
+           stylesheets="@../css/styles.css">
 
-    <padding>
-        <Insets top="40" right="40" bottom="40" left="40"/>
-    </padding>
+    <!-- BACKGROUND -->
 
-    <Label text="Agencia de Viajes"
-           styleClass="auth-title"/>
+    <Pane styleClass="page-background"/>
 
-    <TextField fx:id="txtCorreo"
-               promptText="Correo"
-               prefWidth="320"
-               styleClass="modern-input"/>
+    <Pane styleClass="overlay"/>
 
-    <PasswordField fx:id="txtPassword"
-                   promptText="Contraseña"
-                   prefWidth="320"
-                   styleClass="modern-input"/>
+    <!-- CONTENT -->
 
-    <Button text="Iniciar Sesión"
-            onAction="#iniciarSesion"
-            prefWidth="220"
-            styleClass="primary-button"/>
+    <VBox alignment="CENTER">
 
-    <Button text="Crear cuenta"
-            onAction="#abrirRegistro"
-            prefWidth="220"
-            styleClass="secondary-button"/>
+        <VBox alignment="CENTER"
+              spacing="20"
+              maxWidth="430"
+              styleClass="glass-card">
 
-    <Label fx:id="lblMensaje"
-           styleClass="error-label"/>
+            <padding>
+                <Insets top="35" right="35" bottom="35" left="35"/>
+            </padding>
 
-</VBox>
+            <!-- LOGO -->
+
+            <Label text="✈"
+                   style="-fx-font-size: 60px;"/>
+
+            <!-- TITLES -->
+
+            <VBox alignment="CENTER"
+                  spacing="5">
+
+                <Label text="Agencia de Viajes"
+                       styleClass="page-title"/>
+
+                <Label text="Inicia sesión y comienza tu próxima aventura"
+                       styleClass="page-subtitle"/>
+
+            </VBox>
+
+            <!-- INPUTS -->
+
+            <VBox spacing="14"
+                  alignment="CENTER">
+
+                <TextField fx:id="txtCorreo"
+                           promptText="Correo electrónico"
+                           prefWidth="320"
+                           prefHeight="42"/>
+
+                <PasswordField fx:id="txtPassword"
+                               promptText="Contraseña"
+                               prefWidth="320"
+                               prefHeight="42"/>
+
+            </VBox>
+
+            <!-- BUTTONS -->
+
+            <VBox spacing="12"
+                  alignment="CENTER">
+
+                <Button text="Iniciar Sesión"
+                        prefWidth="240"
+                        prefHeight="44"
+                        onAction="#iniciarSesion"
+                        styleClass="primary-btn"/>
+
+                <Button text="Crear Cuenta"
+                        prefWidth="240"
+                        prefHeight="44"
+                        onAction="#abrirRegistro"
+                        styleClass="secondary-btn"/>
+
+            </VBox>
+
+            <!-- MESSAGE -->
+
+            <Label fx:id="lblMensaje"
+                   wrapText="true"
+                   style="-fx-text-fill: #FFCDD2;
+                          -fx-font-size: 13px;
+                          -fx-font-weight: bold;"/>
+
+        </VBox>
+
+    </VBox>
+
+</StackPane>

@@ -1,0 +1,237 @@
+/* =========================================================
+   BACKGROUND
+   ========================================================= */
+
+.home-background {
+
+    -fx-background-image: url("../images/home-bg.jpg");
+
+    -fx-background-size: cover;
+
+    -fx-background-position: center center;
+}
+
+/* =========================================================
+   OVERLAY
+   ========================================================= */
+
+.home-overlay {
+
+    -fx-background-color:
+            linear-gradient(
+                    to bottom,
+                    rgba(0,0,0,0.28),
+                    rgba(0,0,0,0.42)
+            );
+}
+
+/* =========================================================
+   NAVBAR
+   ========================================================= */
+
+.navbar {
+
+    -fx-padding: 14 32;
+
+    -fx-background-color: rgba(0,0,0,0.18);
+
+    -fx-border-color:
+            transparent
+            transparent
+            rgba(255,255,255,0.18)
+            transparent;
+}
+
+.logo-title {
+
+    -fx-font-size: 26px;
+
+    -fx-font-weight: bold;
+
+    -fx-text-fill: white;
+}
+
+.logo-subtitle {
+
+    -fx-font-size: 13px;
+
+    -fx-text-fill: rgba(255,255,255,0.78);
+}
+
+.logout-btn {
+
+    -fx-background-color: transparent;
+
+    -fx-border-color: rgba(255,255,255,0.35);
+
+    -fx-border-radius: 14px;
+
+    -fx-padding: 8 18;
+
+    -fx-font-size: 13px;
+}
+
+.logout-btn:hover {
+
+    -fx-background-color: rgba(255,255,255,0.12);
+}
+
+/* =========================================================
+   WELCOME
+   ========================================================= */
+
+.welcome-title {
+
+    -fx-font-size: 34px;
+
+    -fx-font-weight: bold;
+
+    -fx-text-fill: white;
+}
+
+.welcome-subtitle {
+
+    -fx-font-size: 18px;
+
+    -fx-text-fill: rgba(255,255,255,0.92);
+}
+
+.blue-separator .line {
+
+    -fx-border-color: #1DA1F2;
+
+    -fx-border-width: 3px;
+}
+
+/* =========================================================
+   HERO CARD
+   ========================================================= */
+
+.hero-card {
+
+    -fx-padding: 26 40;
+
+    -fx-background-color: rgba(255,255,255,0.14);
+
+    -fx-background-radius: 28px;
+
+    -fx-border-color: rgba(255,255,255,0.20);
+
+    -fx-border-radius: 28px;
+
+    -fx-effect:
+            dropshadow(
+                    gaussian,
+                    rgba(0,0,0,0.25),
+                    20,
+                    0.2,
+                    0,
+                    6
+            );
+}
+
+.hero-icon {
+
+    -fx-font-size: 44px;
+}
+
+.hero-title {
+
+    -fx-font-size: 32px;
+
+    -fx-font-weight: bold;
+
+    -fx-text-fill: white;
+}
+
+.hero-subtitle {
+
+    -fx-font-size: 18px;
+
+    -fx-text-fill: rgba(255,255,255,0.88);
+}
+
+/* =========================================================
+   OPTION CARDS
+   ========================================================= */
+
+.option-card {
+
+    -fx-pref-width: 220px;
+    -fx-pref-height: 250px;
+
+    -fx-padding: 20;
+
+    -fx-background-color: rgba(255,255,255,0.14);
+
+    -fx-background-radius: 24px;
+
+    -fx-border-color: rgba(255,255,255,0.18);
+
+    -fx-border-radius: 24px;
+
+    -fx-effect:
+            dropshadow(
+                    gaussian,
+                    rgba(0,0,0,0.25),
+                    18,
+                    0.2,
+                    0,
+                    5
+            );
+}
+
+.option-card:hover {
+
+    -fx-background-color: rgba(255,255,255,0.18);
+
+    -fx-scale-x: 1.02;
+    -fx-scale-y: 1.02;
+}
+
+.card-icon {
+
+    -fx-font-size: 42px;
+}
+
+.option-title {
+
+    -fx-font-size: 18px;
+
+    -fx-font-weight: bold;
+
+    -fx-text-fill: white;
+}
+
+.option-description {
+
+    -fx-font-size: 13px;
+
+    -fx-text-fill: rgba(255,255,255,0.84);
+
+    -fx-text-alignment: center;
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.footer {
+
+    -fx-padding: 14 24;
+
+    -fx-background-color: rgba(0,0,0,0.20);
+
+    -fx-border-color:
+            rgba(255,255,255,0.12)
+            transparent
+            transparent
+            transparent;
+}
+
+.footer-label {
+
+    -fx-font-size: 13px;
+
+    -fx-text-fill: rgba(255,255,255,0.82);
+}
