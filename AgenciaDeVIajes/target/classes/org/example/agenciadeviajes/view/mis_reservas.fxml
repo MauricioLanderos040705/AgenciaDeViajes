@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="15"
+      alignment="CENTER"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.example.agenciadeviajes.controller.MisReservasController"
+      prefWidth="1000"
+      prefHeight="700"
+      style="-fx-padding: 20;">
+
+    <Label text="MIS RESERVAS"
+           style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+
+    <!-- TABLA RESERVAS -->
+    <TableView fx:id="tablaReservas"
+               prefHeight="250">
+
+        <columns>
+
+            <TableColumn fx:id="colFolio"
+                         text="Folio"
+                         prefWidth="180"/>
+
+            <TableColumn fx:id="colFecha"
+                         text="Fecha"
+                         prefWidth="200"/>
+
+            <TableColumn fx:id="colTipo"
+                         text="Tipo"
+                         prefWidth="220"/>
+
+            <TableColumn fx:id="colTotal"
+                         text="Total"
+                         prefWidth="180"/>
+
+        </columns>
+
+    </TableView>
+
+    <!-- DETALLES -->
+    <HBox spacing="20">
+
+        <VBox spacing="10">
+
+            <Label text="Vuelos"
+                   style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+            <ListView fx:id="listVuelos"
+                      prefWidth="300"
+                      prefHeight="200"/>
+
+        </VBox>
+
+        <VBox spacing="10">
+
+            <Label text="Hoteles"
+                   style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+            <ListView fx:id="listHoteles"
+                      prefWidth="300"
+                      prefHeight="200"/>
+
+        </VBox>
+
+        <VBox spacing="10">
+
+            <Label text="Autos"
+                   style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+            <ListView fx:id="listAutos"
+                      prefWidth="300"
+                      prefHeight="200"/>
+
+        </VBox>
+
+    </HBox>
+
+    <Button text="Volver al Home"
+            prefWidth="220"
+            onAction="#volverHome"/>
+
+</VBox>

@@ -16,5 +16,6 @@ module org.example.agenciadeviajes {
     exports org.example.agenciadeviajes;
 
     exports org.example.agenciadeviajes.controller;
+    opens org.example.agenciadeviajes.factory to javafx.base;
 
 }

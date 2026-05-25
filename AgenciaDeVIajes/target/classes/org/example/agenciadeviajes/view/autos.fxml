@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.agenciadeviajes.controller.AutosController">
+
+    <!-- TOP -->
+    <top>
+
+        <VBox spacing="10"
+              style="-fx-background-color: #EF6C00;">
+
+            <padding>
+                <Insets top="15" right="15" bottom="15" left="15"/>
+            </padding>
+
+            <Label text="Consulta de Autos"
+                   style="-fx-text-fill: white;
+                          -fx-font-size: 24px;
+                          -fx-font-weight: bold;"/>
+
+        </VBox>
+
+    </top>
+
+    <!-- CENTER -->
+    <center>
+
+        <VBox spacing="15">
+
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+            <HBox spacing="10">
+
+                <DatePicker fx:id="dpFechaInicio"
+                            promptText="Fecha Inicio"/>
+
+                <DatePicker fx:id="dpFechaFin"
+                            promptText="Fecha Fin"/>
+
+            </HBox>
+            <TableView fx:id="tablaAutos"
+                       prefHeight="500">
+
+                <columns>
+
+                    <TableColumn fx:id="colMarca"
+                                 text="Marca"
+                                 prefWidth="120"/>
+
+                    <TableColumn fx:id="colModelo"
+                                 text="Modelo"
+                                 prefWidth="140"/>
+
+                    <TableColumn fx:id="colCategoria"
+                                 text="Categoría"
+                                 prefWidth="140"/>
+
+                    <TableColumn fx:id="colProveedor"
+                                 text="Proveedor"
+                                 prefWidth="160"/>
+
+                    <TableColumn fx:id="colCiudad"
+                                 text="Ciudad"
+                                 prefWidth="140"/>
+
+                    <TableColumn fx:id="colPrecio"
+                                 text="Precio/Día"
+                                 prefWidth="140"/>
+
+                </columns>
+
+            </TableView>
+            <Button text="Reservar Auto"
+                    prefWidth="200"
+                    onAction="#reservarAuto"/>
+            <Button text="Volver al Home"
+                    prefWidth="200"
+                    onAction="#volverHome"/>
+
+        </VBox>
+
+    </center>
+
+</BorderPane>
