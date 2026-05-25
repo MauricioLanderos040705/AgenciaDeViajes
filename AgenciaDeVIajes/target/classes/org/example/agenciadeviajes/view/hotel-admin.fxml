@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            stylesheets="@../css/styles.css"
+            styleClass="main-background"
+            fx:controller="org.example.agenciadeviajes.admin.HotelAdminController">
+
+    <top>
+        <VBox spacing="10"
+              alignment="CENTER"
+              styleClass="top-bar">
+
+            <padding>
+                <Insets top="15" right="15" bottom="15" left="15"/>
+            </padding>
+
+            <Label text="Administrar Hoteles"
+                   styleClass="section-title"/>
+
+        </VBox>
+    </top>
+
+    <center>
+
+        <VBox spacing="15"
+              styleClass="panel-surface">
+
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+
+            <TableView fx:id="tablaHoteles"
+                       prefHeight="300"
+                       styleClass="modern-table">
+
+                <columns>
+
+                    <TableColumn fx:id="colId"
+                                 text="ID"
+                                 prefWidth="50"/>
+
+                    <TableColumn fx:id="colNombre"
+                                 text="Nombre"
+                                 prefWidth="130"/>
+
+                    <TableColumn fx:id="colCiudad"
+                                 text="Ciudad"
+                                 prefWidth="100"/>
+
+                    <TableColumn fx:id="colEstrellas"
+                                 text="Estrellas"
+                                 prefWidth="70"/>
+
+                </columns>
+
+            </TableView>
+
+            <HBox spacing="15">
+
+                <padding>
+                    <Insets top="10"/>
+                </padding>
+
+                <Label text="Nombre:"
+                       prefWidth="80"/>
+                <TextField fx:id="txtNombre"
+                           prefWidth="200"/>
+
+            </HBox>
+
+            <HBox spacing="15">
+
+                <Label text="Ciudad:"
+                       prefWidth="80"/>
+                <ComboBox fx:id="cbCiudad"
+                          prefWidth="200"/>
+
+            </HBox>
+
+            <HBox spacing="15">
+
+                <Label text="Estrellas:"
+                       prefWidth="80"/>
+                <Spinner fx:id="spEstrellas"
+                         prefWidth="200"/>
+
+            </HBox>
+
+            <HBox spacing="15">
+
+                <Label text="Precio:"
+                       prefWidth="80"/>
+                <TextField fx:id="txtPrecio"
+                           prefWidth="200"/>
+
+            </HBox>
+
+            <HBox spacing="15">
+
+                <Label text="Divisa:"
+                       prefWidth="80"/>
+                <ComboBox fx:id="cbDivisa"
+                          prefWidth="200"/>
+
+            </HBox>
+
+            <HBox spacing="10">
+
+                <padding>
+                    <Insets top="15"/>
+                </padding>
+
+                <Button fx:id="btnCrear"
+                        text="Crear"
+                        prefWidth="100"
+                        onAction="#crearHotel"
+                        styleClass="primary-button"/>
+
+                <Button fx:id="btnActualizar"
+                        text="Actualizar"
+                        prefWidth="100"
+                        onAction="#actualizarHotel"
+                        styleClass="secondary-button"
+                        disable="true"/>
+
+                <Button fx:id="btnEliminar"
+                        text="Eliminar"
+                        prefWidth="100"
+                        onAction="#eliminarHotel"
+                        styleClass="danger-button"
+                        disable="true"/>
+
+                <Button fx:id="btnLimpiar"
+                        text="Limpiar"
+                        prefWidth="100"
+                        onAction="#limpiar"
+                        styleClass="secondary-button"/>
+
+            </HBox>
+
+        </VBox>
+
+    </center>
+
+</BorderPane>

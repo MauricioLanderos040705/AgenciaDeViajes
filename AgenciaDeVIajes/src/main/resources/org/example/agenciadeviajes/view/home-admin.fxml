@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            stylesheets="@../css/styles.css"
+            styleClass="main-background"
+            fx:controller="org.example.agenciadeviajes.admin.AdminHomeController">
+
+    <top>
+        <VBox spacing="10"
+              alignment="CENTER"
+              styleClass="top-bar">
+
+            <padding>
+                <Insets top="20" bottom="20"/>
+            </padding>
+
+            <Label text="Panel de Administración"
+                   styleClass="main-title"/>
+
+            <Label fx:id="lblUsuario"
+                   styleClass="welcome-label"/>
+        </VBox>
+    </top>
+
+    <center>
+
+        <VBox alignment="CENTER"
+              spacing="20"
+              styleClass="content-container">
+
+            <padding>
+                <Insets top="40"/>
+            </padding>
+
+            <Button text="Hoteles"
+                    prefWidth="260"
+                    prefHeight="45"
+                    onAction="#abrirHoteles"
+                    styleClass="primary-button"/>
+
+            <Button text="Vuelos"
+                    prefWidth="260"
+                    prefHeight="45"
+                    onAction="#abrirVuelos"
+                    styleClass="primary-button"/>
+
+            <Button text="Aerolíneas"
+                    prefWidth="260"
+                    prefHeight="45"
+                    onAction="#abrirAerolineas"
+                    styleClass="primary-button"/>
+
+            <Button text="Autos"
+                    prefWidth="260"
+                    prefHeight="45"
+                    onAction="#abrirAutos"
+                    styleClass="primary-button"/>
+
+            <Button text="Ciudades"
+                    prefWidth="260"
+                    prefHeight="45"
+                    onAction="#abrirCiudades"
+                    styleClass="secondary-button"/>
+
+            <Button text="Países"
+                    prefWidth="260"
+                    prefHeight="45"
+                    onAction="#abrirPaises"
+                    styleClass="secondary-button"/>
+
+            <Button text="Divisas"
+                    prefWidth="260"
+                    prefHeight="45"
+                    onAction="#abrirDivisas"
+                    styleClass="secondary-button"/>
+
+            <Button text="Usuarios"
+                    prefWidth="260"
+                    prefHeight="45"
+                    onAction="#abrirUsuarios"
+                    styleClass="secondary-button"/>
+
+            <Button text="Cerrar Sesión"
+                    prefWidth="260"
+                    prefHeight="45"
+                    onAction="#cerrarSesion"
+                    styleClass="danger-button"/>
+
+        </VBox>
+
+    </center>
+
+</BorderPane>

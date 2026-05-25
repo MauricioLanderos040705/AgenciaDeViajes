@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            stylesheets="@../css/styles.css"
+            styleClass="main-background"
+            fx:controller="org.example.agenciadeviajes.admin.VueloAdminController">
+
+    <top>
+        <VBox spacing="10"
+              alignment="CENTER"
+              styleClass="top-bar">
+
+            <padding>
+                <Insets top="15" right="15" bottom="15" left="15"/>
+            </padding>
+
+            <Label text="Administrar Vuelos"
+                   styleClass="section-title"/>
+
+        </VBox>
+    </top>
+
+    <center>
+
+        <VBox spacing="15"
+              styleClass="panel-surface">
+
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+
+            <TableView fx:id="tablaVuelos"
+                       prefHeight="300"
+                       styleClass="modern-table">
+
+                <columns>
+
+                    <TableColumn fx:id="colId"
+                                 text="ID"
+                                 prefWidth="50"/>
+
+                    <TableColumn fx:id="colAerolinea"
+                                 text="Aerolínea"
+                                 prefWidth="110"/>
+
+                    <TableColumn fx:id="colOrigen"
+                                 text="Origen"
+                                 prefWidth="90"/>
+
+                    <TableColumn fx:id="colDestino"
+                                 text="Destino"
+                                 prefWidth="90"/>
+
+                </columns>
+
+            </TableView>
+
+            <HBox spacing="15">
+
+                <padding>
+                    <Insets top="10"/>
+                </padding>
+
+                <Label text="Aerolínea:"
+                       prefWidth="80"/>
+                <ComboBox fx:id="cbAerolinea"
+                          prefWidth="200"/>
+
+            </HBox>
+
+            <HBox spacing="15">
+
+                <Label text="Origen:"
+                       prefWidth="80"/>
+                <ComboBox fx:id="cbOrigen"
+                          prefWidth="200"/>
+
+            </HBox>
+
+            <HBox spacing="15">
+
+                <Label text="Destino:"
+                       prefWidth="80"/>
+                <ComboBox fx:id="cbDestino"
+                          prefWidth="200"/>
+
+            </HBox>
+
+            <HBox spacing="15">
+
+                <Label text="Salida:"
+                       prefWidth="80"/>
+                <DatePicker fx:id="dpFecha"
+                            prefWidth="200"/>
+
+            </HBox>
+
+            <HBox spacing="15">
+
+                <Label text="Asientos:"
+                       prefWidth="80"/>
+                <TextField fx:id="txtAsientos"
+                           prefWidth="200"/>
+
+            </HBox>
+
+            <HBox spacing="15">
+
+                <Label text="Precio:"
+                       prefWidth="80"/>
+                <TextField fx:id="txtPrecio"
+                           prefWidth="200"/>
+
+            </HBox>
+
+            <HBox spacing="15">
+
+                <Label text="Divisa:"
+                       prefWidth="80"/>
+                <ComboBox fx:id="cbDivisa"
+                          prefWidth="200"/>
+
+            </HBox>
+
+            <HBox spacing="10">
+
+                <padding>
+                    <Insets top="15"/>
+                </padding>
+
+                <Button fx:id="btnCrear"
+                        text="Crear"
+                        prefWidth="100"
+                        onAction="#crearVuelo"
+                        styleClass="primary-button"/>
+
+                <Button fx:id="btnActualizar"
+                        text="Actualizar"
+                        prefWidth="100"
+                        onAction="#actualizarVuelo"
+                        styleClass="secondary-button"
+                        disable="true"/>
+
+                <Button fx:id="btnEliminar"
+                        text="Eliminar"
+                        prefWidth="100"
+                        onAction="#eliminarVuelo"
+                        styleClass="danger-button"
+                        disable="true"/>
+
+                <Button fx:id="btnLimpiar"
+                        text="Limpiar"
+                        prefWidth="100"
+                        onAction="#limpiar"
+                        styleClass="secondary-button"/>
+
+            </HBox>
+
+        </VBox>
+
+    </center>
+
+</BorderPane>

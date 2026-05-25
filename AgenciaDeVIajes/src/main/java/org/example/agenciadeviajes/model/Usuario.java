@@ -78,10 +78,14 @@ public class Usuario {
 
     // NUEVO: métodos helper para validar rol
     public boolean esAdmin() {
+        System.out.println("ADMIN");
+
         return "ADMIN".equalsIgnoreCase(rol);
     }
 
-    public boolean esCliente() {
+    public boolean esCliente()   {
+        System.out.println("cliente");
+
         return "CLIENTE".equalsIgnoreCase(rol);
     }
 

@@ -69,42 +69,47 @@ public class LoginController {
     }
 
     /**
-     * NUEVO: Redirige a diferentes vistas según el rol del usuario
+     * Redirige a diferentes vistas según el rol del usuario
      */
     private void abrirHomeSegunRol(Usuario usuario) {
-        try {
-            String fxmlPath;
-            String titulo;
+        String fxmlPath;
+        String titulo;
 
+        try {
             if (usuario.esAdmin()) {
-                // Los admins van a un panel de administración
                 fxmlPath = "/org/example/agenciadeviajes/view/home-admin.fxml";
                 titulo = "Panel Admin";
             } else {
-                // Los clientes van al home normal
                 fxmlPath = "/org/example/agenciadeviajes/view/home.fxml";
                 titulo = "Home";
             }
+
+            System.out.println("[LoginController] Cargando: " + fxmlPath);
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
             Parent root = loader.load();
 
             Stage stage = (Stage) txtCorreo.getScene().getWindow();
-            stage.setScene(new Scene(root, 470, 530));
+            stage.setScene(new Scene(root, 900, 600));
             stage.setTitle(titulo);
+            System.out.println("[LoginController] Vista cargada exitosamente");
 
         } catch (Exception e) {
-            // Si la vista de admin no existe, abre la normal
-            System.out.println("[LoginController] Viendo home normal");
+            System.err.println("[LoginController] Error al cargar vista: " + e.getMessage());
+            e.printStackTrace();
+
+            // Fallback: abrir home normal
             try {
+                System.out.println("[LoginController] Abriendo fallback (home normal)");
                 FXMLLoader loader = new FXMLLoader(
                         getClass().getResource("/org/example/agenciadeviajes/view/home.fxml")
                 );
                 Parent root = loader.load();
                 Stage stage = (Stage) txtCorreo.getScene().getWindow();
-                stage.setScene(new Scene(root, 470, 530));
+                stage.setScene(new Scene(root, 900, 600));
                 stage.setTitle("Home");
             } catch (Exception ex) {
+                System.err.println("[LoginController] Error en fallback: " + ex.getMessage());
                 ex.printStackTrace();
             }
         }
@@ -112,21 +117,16 @@ public class LoginController {
 
     @FXML
     public void abrirRegistro() {
-
         try {
-
             FXMLLoader loader = new FXMLLoader(
                     getClass().getResource("/org/example/agenciadeviajes/view/register.fxml")
             );
-
             Parent root = loader.load();
-
             Stage stage = (Stage) txtCorreo.getScene().getWindow();
-
             stage.setScene(new Scene(root));
             stage.setTitle("Registro");
-
         } catch (Exception e) {
+            System.err.println("[LoginController] Error al cargar registro: " + e.getMessage());
             e.printStackTrace();
         }
     }
