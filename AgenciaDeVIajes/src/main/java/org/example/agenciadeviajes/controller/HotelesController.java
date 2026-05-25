@@ -31,6 +31,7 @@ import org.example.agenciadeviajes.model.DetalleReservaHotel;
 
 import org.example.agenciadeviajes.model.Reserva;
 
+import org.example.agenciadeviajes.util.ReservaTemporal;
 import org.example.agenciadeviajes.util.Sesion;
 
 import java.math.BigDecimal;
@@ -178,7 +179,7 @@ public class HotelesController {
         if (checkIn == null || checkOut == null) {
 
             mostrarAlerta(
-                    "Debes seleccionar fechas."
+                    "Selecciona fechas."
             );
 
             return;
@@ -187,68 +188,31 @@ public class HotelesController {
         if (!checkOut.isAfter(checkIn)) {
 
             mostrarAlerta(
-                    "Check-Out debe ser posterior al Check-In."
+                    "Check-Out debe ser posterior."
             );
 
             return;
         }
 
-        int habitaciones =
-                spHabitaciones.getValue();
-
         try {
 
-            Reserva reserva = new Reserva();
-
-            reserva.setUsuario(
-                    Sesion.getUsuarioActual()
+            ReservaTemporal.agregarHotel(
+                    hotelSeleccionado,
+                    checkIn,
+                    checkOut,
+                    spHabitaciones.getValue()
             );
 
-            reserva.setTipoReserva("Individual");
-
-            reserva.setCodigoDivisa(
-                    hotelSeleccionado.getCodigoDivisa()
+            mostrarExito(
+                    "Hotel agregado al viaje."
             );
-
-            // DETALLE HOTEL
-            DetalleReservaHotel detalle =
-                    new DetalleReservaHotel(
-                            hotelSeleccionado,
-                            checkIn,
-                            checkOut,
-                            habitaciones
-                    );
-
-            reserva.getDetallesHotel().add(detalle);
-
-            BigDecimal total =
-                    detalle.getSubtotal();
-
-            reserva.setTotalPagado(total);
-
-            int idReserva =
-                    reservaDAO.crearReserva(reserva);
-
-            if (idReserva != -1) {
-
-                mostrarExito(
-                        "Hotel reservado correctamente.\n" +
-                                "Folio: #" + idReserva
-                );
-
-            } else {
-
-                mostrarAlerta(
-                        "Error al guardar reserva."
-                );
-            }
 
         } catch (Exception e) {
 
             e.printStackTrace();
 
             mostrarAlerta(
-                    "Ocurrió un error."
+                    e.getMessage()
             );
         }
     }

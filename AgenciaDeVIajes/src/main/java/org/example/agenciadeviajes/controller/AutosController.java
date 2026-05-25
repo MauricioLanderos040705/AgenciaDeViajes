@@ -24,6 +24,7 @@ import org.example.agenciadeviajes.dao.ReservaDAO;
 import org.example.agenciadeviajes.model.DetalleReservaAuto;
 import org.example.agenciadeviajes.model.Reserva;
 
+import org.example.agenciadeviajes.util.ReservaTemporal;
 import org.example.agenciadeviajes.util.Sesion;
 
 import java.math.BigDecimal;
@@ -172,7 +173,7 @@ public class AutosController {
         if (fechaInicio == null || fechaFin == null) {
 
             mostrarAlerta(
-                    "Selecciona las fechas."
+                    "Selecciona fechas."
             );
 
             return;
@@ -181,7 +182,7 @@ public class AutosController {
         if (!fechaFin.isAfter(fechaInicio)) {
 
             mostrarAlerta(
-                    "La fecha fin debe ser posterior."
+                    "Fecha fin inválida."
             );
 
             return;
@@ -189,56 +190,22 @@ public class AutosController {
 
         try {
 
-            Reserva reserva = new Reserva();
-
-            reserva.setUsuario(
-                    Sesion.getUsuarioActual()
+            ReservaTemporal.agregarAuto(
+                    autoSeleccionado,
+                    fechaInicio,
+                    fechaFin
             );
 
-            reserva.setTipoReserva("Individual");
-
-            reserva.setCodigoDivisa(
-                    autoSeleccionado.getCodigoDivisa()
+            mostrarExito(
+                    "Auto agregado al viaje."
             );
-
-            // DETALLE AUTO
-            DetalleReservaAuto detalle =
-                    new DetalleReservaAuto(
-                            autoSeleccionado,
-                            fechaInicio,
-                            fechaFin
-                    );
-
-            reserva.getDetallesAuto().add(detalle);
-
-            BigDecimal total =
-                    detalle.getSubtotal();
-
-            reserva.setTotalPagado(total);
-
-            int idReserva =
-                    reservaDAO.crearReserva(reserva);
-
-            if (idReserva != -1) {
-
-                mostrarExito(
-                        "Auto reservado correctamente.\n" +
-                                "Folio: #" + idReserva
-                );
-
-            } else {
-
-                mostrarAlerta(
-                        "Error al guardar reserva."
-                );
-            }
 
         } catch (Exception e) {
 
             e.printStackTrace();
 
             mostrarAlerta(
-                    "Ocurrió un error."
+                    e.getMessage()
             );
         }
     }

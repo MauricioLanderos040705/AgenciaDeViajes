@@ -59,6 +59,9 @@
                     prefHeight="45"
                     onAction="#abrirReservas"
                     styleClass="secondary-button"/>
+            <Button text="Confirmar Reserva"
+                    prefWidth="250"
+                    onAction="#abrirConfirmarReserva"/>
 
             <Button text="Cerrar Sesión"
                     prefWidth="260"

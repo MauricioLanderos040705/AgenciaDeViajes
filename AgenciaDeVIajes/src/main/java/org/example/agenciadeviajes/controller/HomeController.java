@@ -6,7 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
-
+import org.example.agenciadeviajes.util.ReservaTemporal;
 import org.example.agenciadeviajes.model.Usuario;
 import org.example.agenciadeviajes.util.Sesion;
 
@@ -16,14 +16,20 @@ public class HomeController {
     private Label lblBienvenida;
 
     @FXML
+
     public void initialize() {
 
         if (Sesion.haySesion()) {
-
             lblBienvenida.setText(
-                    "Bienvenido(a), " +
+                    "Bienvenido, " +
+
                             Sesion.getUsuarioActual().getNombreCompleto()
             );
+            if (!ReservaTemporal.existeReservaActiva()) {
+                ReservaTemporal.iniciar(
+                        Sesion.getUsuarioActual()
+                );
+            }
         }
     }
 
@@ -145,5 +151,31 @@ public class HomeController {
 
         }
 
+    }
+    @FXML
+    public void abrirConfirmarReserva() {
+
+        try {
+
+            FXMLLoader loader = new FXMLLoader(
+
+                    getClass().getResource(
+                            "/org/example/agenciadeviajes/view/confirmar_reserva.fxml"
+                    )
+            );
+
+            Parent root = loader.load();
+
+            Stage stage =
+                    (Stage) lblBienvenida.getScene().getWindow();
+
+            stage.setScene(new Scene(root));
+
+            stage.setTitle("Confirmar Reserva");
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+        }
     }
 }

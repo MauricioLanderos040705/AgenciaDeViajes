@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="18"
+      alignment="CENTER"
+      prefWidth="900"
+      prefHeight="700"
+      stylesheets="@../css/styles.css"
+      styleClass="main-background"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.example.agenciadeviajes.controller.ConfirmarReservaController">
+
+
+
+    <!-- TITULO -->
+
+    <Label text="CONFIRMAR RESERVA"
+           styleClass="main-title-dark"/>
+
+    <!-- INFO -->
+
+    <VBox spacing="6"
+          alignment="CENTER"
+          styleClass="panel-surface">
+
+        <Label fx:id="lblTipo"
+               styleClass="subsection-title"/>
+
+        <Label fx:id="lblTotal"
+               styleClass="reservation-total"/>
+
+    </VBox>
+
+    <!-- LISTAS -->
+
+    <HBox spacing="20"
+          alignment="CENTER">
+
+        <!-- VUELOS -->
+
+        <VBox spacing="10"
+              alignment="TOP_CENTER"
+              styleClass="panel-surface">
+
+            <Label text="Vuelos"
+                   styleClass="subsection-title"/>
+
+            <ListView fx:id="listVuelos"
+                      prefWidth="250"
+                      prefHeight="250"
+                      styleClass="modern-list"/>
+
+        </VBox>
+
+        <!-- HOTELES -->
+
+        <VBox spacing="10"
+              alignment="TOP_CENTER"
+              styleClass="panel-surface">
+
+            <Label text="Hoteles"
+                   styleClass="subsection-title"/>
+
+            <ListView fx:id="listHoteles"
+                      prefWidth="250"
+                      prefHeight="250"
+                      styleClass="modern-list"/>
+
+        </VBox>
+
+        <!-- AUTOS -->
+
+        <VBox spacing="10"
+              alignment="TOP_CENTER"
+              styleClass="panel-surface">
+
+            <Label text="Autos"
+                   styleClass="subsection-title"/>
+
+            <ListView fx:id="listAutos"
+                      prefWidth="250"
+                      prefHeight="250"
+                      styleClass="modern-list"/>
+
+        </VBox>
+
+    </HBox>
+
+    <!-- BOTONES -->
+
+    <VBox spacing="12"
+          alignment="CENTER">
+
+        <Button text="FINALIZAR RESERVA"
+                prefWidth="260"
+                prefHeight="45"
+                onAction="#finalizarReserva"
+                styleClass="success-button"/>
+
+        <Button text="Volver al Home"
+                prefWidth="260"
+                prefHeight="45"
+                onAction="#volverHome"
+                styleClass="secondary-button"/>
+
+    </VBox>
+
+</VBox>

@@ -992,3 +992,59 @@ VBox {
 
     -fx-text-fill: #475569;
 }
+/* =========================================================
+   CONFIRMAR RESERVA
+   ========================================================= */
+
+.reservation-total {
+
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+
+    -fx-text-fill: #1DA1F2;
+}
+
+.modern-list {
+
+    -fx-background-color: white;
+
+    -fx-background-radius: 14px;
+    -fx-border-radius: 14px;
+
+    -fx-padding: 6px;
+
+    -fx-effect:
+            dropshadow(gaussian,
+            rgba(0,0,0,0.08),
+            12,
+            0.15,
+            0,
+            3);
+}
+
+.modern-list .list-cell {
+
+    -fx-background-color: transparent;
+
+    -fx-padding: 10px 12px;
+
+    -fx-text-fill: #263238;
+
+    -fx-font-size: 13px;
+}
+
+.modern-list .list-cell:hover {
+
+    -fx-background-color: #F1F8FF;
+
+    -fx-background-radius: 10px;
+}
+
+.modern-list .list-cell:selected {
+
+    -fx-background-color: #D6ECFF;
+
+    -fx-background-radius: 10px;
+
+    -fx-text-fill: #1565C0;
+}

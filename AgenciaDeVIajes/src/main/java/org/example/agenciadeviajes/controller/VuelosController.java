@@ -18,7 +18,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.*;
 
 import org.example.agenciadeviajes.dao.ReservaDAO;
-
+import org.example.agenciadeviajes.util.ReservaTemporal;
 import org.example.agenciadeviajes.model.DetalleReservaVuelo;
 
 import org.example.agenciadeviajes.model.Reserva;
@@ -138,7 +138,7 @@ public class VuelosController {
         if (vueloSeleccionado == null) {
 
             mostrarAlerta(
-                    "Debes seleccionar un vuelo."
+                    "Selecciona un vuelo."
             );
 
             return;
@@ -146,55 +146,21 @@ public class VuelosController {
 
         try {
 
-            Reserva reserva = new Reserva();
-
-            reserva.setUsuario(
-                    Sesion.getUsuarioActual()
+            ReservaTemporal.agregarVuelo(
+                    vueloSeleccionado,
+                    1
             );
 
-            reserva.setTipoReserva("Individual");
-
-            reserva.setCodigoDivisa(
-                    vueloSeleccionado.getCodigoDivisa()
+            mostrarExito(
+                    "Vuelo agregado al viaje."
             );
-
-            BigDecimal total =
-                    vueloSeleccionado.getPrecioAsiento();
-
-            reserva.setTotalPagado(total);
-
-            // DETALLE
-            DetalleReservaVuelo detalle =
-                    new DetalleReservaVuelo(
-                            vueloSeleccionado,
-                            1
-                    );
-
-            reserva.getDetallesVuelo().add(detalle);
-
-            int idReserva =
-                    reservaDAO.crearReserva(reserva);
-
-            if (idReserva != -1) {
-
-                mostrarExito(
-                        "Vuelo reservado correctamente.\n" +
-                                "Folio: #" + idReserva
-                );
-
-            } else {
-
-                mostrarAlerta(
-                        "Error al guardar la reserva."
-                );
-            }
 
         } catch (Exception e) {
 
             e.printStackTrace();
 
             mostrarAlerta(
-                    "Ocurrió un error."
+                    e.getMessage()
             );
         }
     }
