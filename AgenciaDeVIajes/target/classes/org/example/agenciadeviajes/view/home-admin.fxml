@@ -28,67 +28,80 @@
 
     <center>
 
-        <VBox alignment="CENTER"
-              spacing="20"
+        <VBox alignment="TOP_CENTER"
+              spacing="15"
               styleClass="content-container">
 
             <padding>
-                <Insets top="40"/>
+                <Insets top="30" left="20" right="20" bottom="20"/>
             </padding>
 
-            <Button text="Hoteles"
-                    prefWidth="260"
-                    prefHeight="45"
-                    onAction="#abrirHoteles"
-                    styleClass="primary-button"/>
+            <HBox spacing="15" alignment="CENTER">
+                <Button text="Hoteles"
+                        prefWidth="150"
+                        prefHeight="40"
+                        onAction="#abrirHoteles"
+                        styleClass="primary-button"/>
+                <Button text="Vuelos"
+                        prefWidth="150"
+                        prefHeight="40"
+                        onAction="#abrirVuelos"
+                        styleClass="primary-button"/>
+                <Button text="Aerolíneas"
+                        prefWidth="150"
+                        prefHeight="40"
+                        onAction="#abrirAerolineas"
+                        styleClass="primary-button"/>
+            </HBox>
 
-            <Button text="Vuelos"
-                    prefWidth="260"
-                    prefHeight="45"
-                    onAction="#abrirVuelos"
-                    styleClass="primary-button"/>
+            <HBox spacing="15" alignment="CENTER">
+                <Button text="Autos"
+                        prefWidth="150"
+                        prefHeight="40"
+                        onAction="#abrirAutos"
+                        styleClass="primary-button"/>
+                <Button text="Ciudades"
+                        prefWidth="150"
+                        prefHeight="40"
+                        onAction="#abrirCiudades"
+                        styleClass="secondary-button"/>
+                <Button text="Países"
+                        prefWidth="150"
+                        prefHeight="40"
+                        onAction="#abrirPaises"
+                        styleClass="secondary-button"/>
+            </HBox>
 
-            <Button text="Aerolíneas"
-                    prefWidth="260"
-                    prefHeight="45"
-                    onAction="#abrirAerolineas"
-                    styleClass="primary-button"/>
+            <HBox spacing="15" alignment="CENTER">
+                <Button text="Divisas"
+                        prefWidth="150"
+                        prefHeight="40"
+                        onAction="#abrirDivisas"
+                        styleClass="secondary-button"/>
+                <Button text="Categorías Autos"
+                        prefWidth="150"
+                        prefHeight="40"
+                        onAction="#abrirCategorias"
+                        styleClass="secondary-button"/>
+                <Button text="Modelos Autos"
+                        prefWidth="150"
+                        prefHeight="40"
+                        onAction="#abrirModelos"
+                        styleClass="secondary-button"/>
+            </HBox>
 
-            <Button text="Autos"
-                    prefWidth="260"
-                    prefHeight="45"
-                    onAction="#abrirAutos"
-                    styleClass="primary-button"/>
-
-            <Button text="Ciudades"
-                    prefWidth="260"
-                    prefHeight="45"
-                    onAction="#abrirCiudades"
-                    styleClass="secondary-button"/>
-
-            <Button text="Países"
-                    prefWidth="260"
-                    prefHeight="45"
-                    onAction="#abrirPaises"
-                    styleClass="secondary-button"/>
-
-            <Button text="Divisas"
-                    prefWidth="260"
-                    prefHeight="45"
-                    onAction="#abrirDivisas"
-                    styleClass="secondary-button"/>
-
-            <Button text="Usuarios"
-                    prefWidth="260"
-                    prefHeight="45"
-                    onAction="#abrirUsuarios"
-                    styleClass="secondary-button"/>
-
-            <Button text="Cerrar Sesión"
-                    prefWidth="260"
-                    prefHeight="45"
-                    onAction="#cerrarSesion"
-                    styleClass="danger-button"/>
+            <HBox spacing="15" alignment="CENTER">
+                <Button text="Proveedores Autos"
+                        prefWidth="150"
+                        prefHeight="40"
+                        onAction="#abrirProveedores"
+                        styleClass="secondary-button"/>
+                <Button text="Cerrar Sesión"
+                        prefWidth="150"
+                        prefHeight="40"
+                        onAction="#cerrarSesion"
+                        styleClass="danger-button"/>
+            </HBox>
 
         </VBox>
 

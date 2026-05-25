@@ -41,7 +41,13 @@ public class ReservaDAO {
             // 1. Insertar cabecera
             try (PreparedStatement ps = conn.prepareStatement(sqlReserva, Statement.RETURN_GENERATED_KEYS)) {
                 ps.setInt(1, r.getUsuario().getIdUsuario());
-                ps.setString(2, r.getTipoReserva());
+                // Limitar tipo_reserva a máximo 50 caracteres para evitar truncamiento
+                String tipoReserva = r.getTipoReserva();
+                if (tipoReserva != null && tipoReserva.length() > 50) {
+                    tipoReserva = tipoReserva.substring(0, 50);
+                }
+                System.out.println("[ReservaDAO.crearReserva] Tipo Reserva: '" + tipoReserva + "'");
+                ps.setString(2, tipoReserva);
                 ps.setBigDecimal(3, r.getTotalPagado());
                 ps.setString(4, r.getCodigoDivisa());
                 ps.executeUpdate();

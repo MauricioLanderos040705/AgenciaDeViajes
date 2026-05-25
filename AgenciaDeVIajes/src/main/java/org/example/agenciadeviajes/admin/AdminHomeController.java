@@ -61,11 +61,6 @@ public class AdminHomeController {
     }
 
     @FXML
-    private void abrirUsuarios() {
-        cargarModulo("Usuarios");
-    }
-
-    @FXML
     private void cerrarSesion() {
         try {
             Sesion.cerrarSesion();
@@ -81,6 +76,23 @@ public class AdminHomeController {
         }
     }
 
+    @FXML
+    private void abrirCategorias() {
+        cargarModulo("Categorías de Autos");
+    }
+
+    @FXML
+    private void abrirModelos() {
+        cargarModulo("Modelos de Autos");
+    }
+
+    @FXML
+    private void abrirProveedores() {
+        cargarModulo("Proveedores de Autos");
+    }
+
+    // Usuarios eliminado
+
     private void cargarModulo(String opcion) {
         try {
             String fxml = switch (opcion) {
@@ -91,15 +103,18 @@ public class AdminHomeController {
                 case "Ciudades" -> "/org/example/agenciadeviajes/view/ciudad-admin.fxml";
                 case "Países" -> "/org/example/agenciadeviajes/view/pais-admin.fxml";
                 case "Divisas" -> "/org/example/agenciadeviajes/view/divisa-admin.fxml";
-                case "Usuarios" -> "/org/example/agenciadeviajes/view/usuario-admin.fxml";
+                case "Categorías de Autos" -> "/org/example/agenciadeviajes/view/categoriaAuto-admin.fxml";
+                case "Modelos de Autos" -> "/org/example/agenciadeviajes/view/modeloAuto-admin.fxml";
+                case "Proveedores de Autos" -> "/org/example/agenciadeviajes/view/proveedorAuto-admin.fxml";
                 default -> null;
             };
 
             if (fxml != null) {
                 Parent vista = FXMLLoader.load(getClass().getResource(fxml));
                 Stage stage = (Stage) lblUsuario.getScene().getWindow();
-                stage.setScene(new Scene(vista, 900, 600));
+                stage.setScene(new Scene(vista, 1400, 850));
                 stage.setTitle("Administración - " + opcion);
+                stage.setMaximized(false);
             }
         } catch (Exception e) {
             alert("Error", "No se pudo cargar el módulo: " + e.getMessage());

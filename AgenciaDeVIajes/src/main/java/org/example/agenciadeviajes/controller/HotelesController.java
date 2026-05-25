@@ -76,17 +76,22 @@ public class HotelesController {
 
     @FXML
     public void initialize() {
-
-        configurarTabla();
-        spHabitaciones.setValueFactory(
-                new SpinnerValueFactory.IntegerSpinnerValueFactory(
-                        1,
-                        10,
-                        1
-                )
-        );
-
-        cargarHoteles();
+        try {
+            System.out.println("🔄 [HotelesController] Inicializando...");
+            configurarTabla();
+            spHabitaciones.setValueFactory(
+                    new SpinnerValueFactory.IntegerSpinnerValueFactory(
+                            1,
+                            10,
+                            1
+                    )
+            );
+            cargarHoteles();
+            System.out.println("✓ [HotelesController] Inicialización completada");
+        } catch (Exception e) {
+            System.err.println("❌ [HotelesController.initialize] Error: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     private void configurarTabla() {
@@ -130,12 +135,31 @@ public class HotelesController {
     }
 
     private void cargarHoteles() {
+        try {
+            System.out.println("📋 [cargarHoteles] Obteniendo hoteles de BD...");
+            List<Hotel> hoteles = hotelDAO.obtenerTodos();
 
-        List<Hotel> hoteles = hotelDAO.obtenerTodos();
+            if (hoteles == null) {
+                System.err.println("❌ hotelDAO.obtenerTodos() retornó NULL");
+                return;
+            }
 
-        tablaHoteles.setItems(
-                FXCollections.observableArrayList(hoteles)
-        );
+            System.out.println("✓ Hoteles obtenidos: " + hoteles.size());
+
+            if (hoteles.isEmpty()) {
+                System.out.println("⚠️ No hay hoteles disponibles en la BD");
+            } else {
+                for (Hotel h : hoteles) {
+                    System.out.println("  - " + h.toString());
+                }
+            }
+
+            tablaHoteles.setItems(FXCollections.observableArrayList(hoteles));
+            System.out.println("✓ Tabla de hoteles actualizada");
+        } catch (Exception e) {
+            System.err.println("❌ Error en cargarHoteles: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     @FXML

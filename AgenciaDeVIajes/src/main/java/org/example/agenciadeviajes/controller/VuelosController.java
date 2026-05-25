@@ -47,20 +47,34 @@ public class VuelosController {
     private TableColumn<Vuelo, String> colSalida;
 
     @FXML
+    private TableColumn<Vuelo, String> colLlegada;
+
+    @FXML
     private TableColumn<Vuelo, String> colPrecio;
 
     @FXML
+    private TableColumn<Vuelo, String> colDivisa;
+
+    @FXML
     private TableColumn<Vuelo, Integer> colAsientos;
+
+    @FXML
+    private TableColumn<Vuelo, String> colRedondo;
 
     private final VueloDAO vueloDAO = new VueloDAO();
     private final ReservaDAO reservaDAO = new ReservaDAO();
 
     @FXML
     public void initialize() {
-
-        configurarTabla();
-
-        cargarVuelos();
+        try {
+            System.out.println("🔄 [VuelosController] Inicializando...");
+            configurarTabla();
+            cargarVuelos();
+            System.out.println("✓ [VuelosController] Inicialización completada");
+        } catch (Exception e) {
+            System.err.println("❌ [VuelosController.initialize] Error: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     private void configurarTabla() {
@@ -89,24 +103,61 @@ public class VuelosController {
                 )
         );
 
+        colLlegada.setCellValueFactory(cellData ->
+                new javafx.beans.property.SimpleStringProperty(
+                        cellData.getValue().getFechaLlegada().toString()
+                )
+        );
+
         colPrecio.setCellValueFactory(cellData ->
                 new javafx.beans.property.SimpleStringProperty(
                         "$" + cellData.getValue().getPrecioAsiento()
                 )
         );
 
+        colDivisa.setCellValueFactory(cellData ->
+                new javafx.beans.property.SimpleStringProperty(
+                        cellData.getValue().getCodigoDivisa()
+                )
+        );
+
         colAsientos.setCellValueFactory(
                 new PropertyValueFactory<>("asientosDisponibles")
+        );
+
+        colRedondo.setCellValueFactory(cellData ->
+                new javafx.beans.property.SimpleStringProperty(
+                        cellData.getValue().isEsRedondo() ? "Sí" : "No"
+                )
         );
     }
 
     private void cargarVuelos() {
+        try {
+            System.out.println("📋 [cargarVuelos] Obteniendo vuelos de BD...");
+            List<Vuelo> vuelos = vueloDAO.obtenerTodos();
 
-        List<Vuelo> vuelos = vueloDAO.obtenerTodos();
+            if (vuelos == null) {
+                System.err.println("❌ vueloDAO.obtenerTodos() retornó NULL");
+                return;
+            }
 
-        tablaVuelos.setItems(
-                FXCollections.observableArrayList(vuelos)
-        );
+            System.out.println("✓ Vuelos obtenidos: " + vuelos.size());
+
+            if (vuelos.isEmpty()) {
+                System.out.println("⚠️ No hay vuelos disponibles en la BD");
+            } else {
+                for (Vuelo v : vuelos) {
+                    System.out.println("  - " + v.toString());
+                }
+            }
+
+            tablaVuelos.setItems(FXCollections.observableArrayList(vuelos));
+            System.out.println("✓ Tabla de vuelos actualizada");
+        } catch (Exception e) {
+            System.err.println("❌ Error en cargarVuelos: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     @FXML

@@ -28,7 +28,8 @@
     <center>
 
         <VBox spacing="15"
-              styleClass="panel-surface">
+              styleClass="panel-surface"
+              VBox.vgrow="ALWAYS">
 
             <padding>
                 <Insets top="20" right="20" bottom="20" left="20"/>
@@ -51,7 +52,8 @@
             </HBox>
 
             <TableView fx:id="tablaHoteles"
-                       prefHeight="500"
+                       prefHeight="600"
+                       VBox.vgrow="ALWAYS"
                        styleClass="modern-table">
 
                 <columns>

@@ -27,14 +27,16 @@
     <center>
 
         <VBox spacing="15"
-              styleClass="panel-surface">
+              styleClass="panel-surface"
+              VBox.vgrow="ALWAYS">
 
             <padding>
                 <Insets top="20" right="20" bottom="20" left="20"/>
             </padding>
 
             <TableView fx:id="tablaHoteles"
-                       prefHeight="300"
+                       prefHeight="550"
+                       VBox.vgrow="ALWAYS"
                        styleClass="modern-table">
 
                 <columns>
@@ -54,6 +56,10 @@
                     <TableColumn fx:id="colEstrellas"
                                  text="Estrellas"
                                  prefWidth="70"/>
+
+                    <TableColumn fx:id="colPrecio"
+                                 text="Precio/Noche"
+                                 prefWidth="100"/>
 
                 </columns>
 
@@ -108,6 +114,15 @@
 
             </HBox>
 
+            <HBox spacing="15">
+
+                <Label text="Habitaciones:"
+                       prefWidth="80"/>
+                <Spinner fx:id="spHabitaciones"
+                         prefWidth="200"/>
+
+            </HBox>
+
             <HBox spacing="10">
 
                 <padding>
@@ -138,6 +153,14 @@
                         text="Limpiar"
                         prefWidth="100"
                         onAction="#limpiar"
+                        styleClass="secondary-button"/>
+
+                <Separator prefWidth="30"/>
+
+                <Button fx:id="btnRegresar"
+                        text="← Regresar"
+                        prefWidth="100"
+                        onAction="#regresar"
                         styleClass="secondary-button"/>
 
             </HBox>

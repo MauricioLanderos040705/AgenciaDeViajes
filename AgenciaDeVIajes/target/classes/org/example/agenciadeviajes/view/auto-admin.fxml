@@ -7,7 +7,7 @@
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             stylesheets="@../css/styles.css"
             styleClass="main-background"
-            fx:controller="org.example.agenciadeviajes.admin.HotelAdminController">
+            fx:controller="org.example.agenciadeviajes.admin.AutoAdminController">
 
     <top>
         <VBox spacing="10"
@@ -18,7 +18,7 @@
                 <Insets top="15" right="15" bottom="15" left="15"/>
             </padding>
 
-            <Label text="Administrar Hoteles"
+            <Label text="Administrar Autos"
                    styleClass="section-title"/>
 
         </VBox>
@@ -34,7 +34,7 @@
                 <Insets top="20" right="20" bottom="20" left="20"/>
             </padding>
 
-            <TableView fx:id="tablaHoteles"
+            <TableView fx:id="tablaAutos"
                        prefHeight="550"
                        VBox.vgrow="ALWAYS"
                        styleClass="modern-table">
@@ -45,20 +45,20 @@
                                  text="ID"
                                  prefWidth="50"/>
 
-                    <TableColumn fx:id="colNombre"
-                                 text="Nombre"
-                                 prefWidth="130"/>
+                    <TableColumn fx:id="colModelo"
+                                 text="Modelo"
+                                 prefWidth="150"/>
+
+                    <TableColumn fx:id="colProveedor"
+                                 text="Proveedor"
+                                 prefWidth="150"/>
 
                     <TableColumn fx:id="colCiudad"
                                  text="Ciudad"
-                                 prefWidth="100"/>
-
-                    <TableColumn fx:id="colEstrellas"
-                                 text="Estrellas"
-                                 prefWidth="70"/>
+                                 prefWidth="120"/>
 
                     <TableColumn fx:id="colPrecio"
-                                 text="Precio/Noche"
+                                 text="Precio/Día"
                                  prefWidth="100"/>
 
                 </columns>
@@ -71,10 +71,19 @@
                     <Insets top="10"/>
                 </padding>
 
-                <Label text="Nombre:"
+                <Label text="Modelo:"
                        prefWidth="80"/>
-                <TextField fx:id="txtNombre"
-                           prefWidth="200"/>
+                <ComboBox fx:id="cbModelo"
+                          prefWidth="200"/>
+
+            </HBox>
+
+            <HBox spacing="15">
+
+                <Label text="Proveedor:"
+                       prefWidth="80"/>
+                <ComboBox fx:id="cbProveedor"
+                          prefWidth="200"/>
 
             </HBox>
 
@@ -89,16 +98,7 @@
 
             <HBox spacing="15">
 
-                <Label text="Estrellas:"
-                       prefWidth="80"/>
-                <Spinner fx:id="spEstrellas"
-                         prefWidth="200"/>
-
-            </HBox>
-
-            <HBox spacing="15">
-
-                <Label text="Precio:"
+                <Label text="Precio/Día:"
                        prefWidth="80"/>
                 <TextField fx:id="txtPrecio"
                            prefWidth="200"/>
@@ -114,15 +114,6 @@
 
             </HBox>
 
-            <HBox spacing="15">
-
-                <Label text="Habitaciones:"
-                       prefWidth="80"/>
-                <Spinner fx:id="spHabitaciones"
-                         prefWidth="200"/>
-
-            </HBox>
-
             <HBox spacing="10">
 
                 <padding>
@@ -132,20 +123,20 @@
                 <Button fx:id="btnCrear"
                         text="Crear"
                         prefWidth="100"
-                        onAction="#crearHotel"
+                        onAction="#crearAuto"
                         styleClass="primary-button"/>
 
                 <Button fx:id="btnActualizar"
                         text="Actualizar"
                         prefWidth="100"
-                        onAction="#actualizarHotel"
+                        onAction="#actualizarAuto"
                         styleClass="secondary-button"
                         disable="true"/>
 
                 <Button fx:id="btnEliminar"
                         text="Eliminar"
                         prefWidth="100"
-                        onAction="#eliminarHotel"
+                        onAction="#eliminarAuto"
                         styleClass="danger-button"
                         disable="true"/>
 

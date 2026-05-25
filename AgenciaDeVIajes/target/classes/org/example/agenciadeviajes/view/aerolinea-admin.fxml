@@ -7,7 +7,7 @@
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             stylesheets="@../css/styles.css"
             styleClass="main-background"
-            fx:controller="org.example.agenciadeviajes.admin.HotelAdminController">
+            fx:controller="org.example.agenciadeviajes.admin.AerolineaAdminController">
 
     <top>
         <VBox spacing="10"
@@ -18,7 +18,7 @@
                 <Insets top="15" right="15" bottom="15" left="15"/>
             </padding>
 
-            <Label text="Administrar Hoteles"
+            <Label text="Administrar Aerolíneas"
                    styleClass="section-title"/>
 
         </VBox>
@@ -34,7 +34,7 @@
                 <Insets top="20" right="20" bottom="20" left="20"/>
             </padding>
 
-            <TableView fx:id="tablaHoteles"
+            <TableView fx:id="tablaAerolineas"
                        prefHeight="550"
                        VBox.vgrow="ALWAYS"
                        styleClass="modern-table">
@@ -47,18 +47,10 @@
 
                     <TableColumn fx:id="colNombre"
                                  text="Nombre"
-                                 prefWidth="130"/>
+                                 prefWidth="250"/>
 
-                    <TableColumn fx:id="colCiudad"
-                                 text="Ciudad"
-                                 prefWidth="100"/>
-
-                    <TableColumn fx:id="colEstrellas"
-                                 text="Estrellas"
-                                 prefWidth="70"/>
-
-                    <TableColumn fx:id="colPrecio"
-                                 text="Precio/Noche"
+                    <TableColumn fx:id="colCodigo"
+                                 text="Código IATA"
                                  prefWidth="100"/>
 
                 </columns>
@@ -74,52 +66,16 @@
                 <Label text="Nombre:"
                        prefWidth="80"/>
                 <TextField fx:id="txtNombre"
-                           prefWidth="200"/>
+                           prefWidth="250"/>
 
             </HBox>
 
             <HBox spacing="15">
 
-                <Label text="Ciudad:"
+                <Label text="Código IATA:"
                        prefWidth="80"/>
-                <ComboBox fx:id="cbCiudad"
-                          prefWidth="200"/>
-
-            </HBox>
-
-            <HBox spacing="15">
-
-                <Label text="Estrellas:"
-                       prefWidth="80"/>
-                <Spinner fx:id="spEstrellas"
-                         prefWidth="200"/>
-
-            </HBox>
-
-            <HBox spacing="15">
-
-                <Label text="Precio:"
-                       prefWidth="80"/>
-                <TextField fx:id="txtPrecio"
-                           prefWidth="200"/>
-
-            </HBox>
-
-            <HBox spacing="15">
-
-                <Label text="Divisa:"
-                       prefWidth="80"/>
-                <ComboBox fx:id="cbDivisa"
-                          prefWidth="200"/>
-
-            </HBox>
-
-            <HBox spacing="15">
-
-                <Label text="Habitaciones:"
-                       prefWidth="80"/>
-                <Spinner fx:id="spHabitaciones"
-                         prefWidth="200"/>
+                <TextField fx:id="txtCodigoIata"
+                           prefWidth="250"/>
 
             </HBox>
 
@@ -132,20 +88,20 @@
                 <Button fx:id="btnCrear"
                         text="Crear"
                         prefWidth="100"
-                        onAction="#crearHotel"
+                        onAction="#crearAerolinea"
                         styleClass="primary-button"/>
 
                 <Button fx:id="btnActualizar"
                         text="Actualizar"
                         prefWidth="100"
-                        onAction="#actualizarHotel"
+                        onAction="#actualizarAerolinea"
                         styleClass="secondary-button"
                         disable="true"/>
 
                 <Button fx:id="btnEliminar"
                         text="Eliminar"
                         prefWidth="100"
-                        onAction="#eliminarHotel"
+                        onAction="#eliminarAerolinea"
                         styleClass="danger-button"
                         disable="true"/>
 

@@ -13,6 +13,9 @@ import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
 import org.example.agenciadeviajes.dao.ReservaDAO;
+import org.example.agenciadeviajes.dao.HotelDAO;
+import org.example.agenciadeviajes.dao.VueloDAO;
+import org.example.agenciadeviajes.dao.AutoDAO;
 
 import org.example.agenciadeviajes.model.*;
 
@@ -35,8 +38,10 @@ public class ConfirmarReservaController {
     @FXML
     private ListView<String> listAutos;
 
-    private final ReservaDAO reservaDAO =
-            new ReservaDAO();
+    private final ReservaDAO reservaDAO = new ReservaDAO();
+    private final HotelDAO hotelDAO = new HotelDAO();
+    private final VueloDAO vueloDAO = new VueloDAO();
+    private final AutoDAO autoDAO = new AutoDAO();
 
     private Reserva reserva;
 
@@ -98,9 +103,37 @@ public class ConfirmarReservaController {
 
             if (idReserva != -1) {
 
+                // ✅ RESTAR DISPONIBILIDAD DE HOTELES
+                for (DetalleReservaHotel detalle : reserva.getDetallesHotel()) {
+                    Hotel hotel = detalle.getHotel();
+                    if (hotel != null && hotel.getHabitacionesDisponibles() > 0) {
+                        hotel.setHabitacionesDisponibles(hotel.getHabitacionesDisponibles() - 1);
+                        hotelDAO.actualizar(hotel);
+                        System.out.println("[ConfirmarReserva] Hotel " + hotel.getNombre() + " habitaciones restantes: " + hotel.getHabitacionesDisponibles());
+                    }
+                }
+
+                // ✅ RESTAR DISPONIBILIDAD DE VUELOS
+                for (DetalleReservaVuelo detalle : reserva.getDetallesVuelo()) {
+                    Vuelo vuelo = detalle.getVuelo();
+                    if (vuelo != null && vuelo.getAsientosDisponibles() > 0) {
+                        vuelo.setAsientosDisponibles(vuelo.getAsientosDisponibles() - 1);
+                        vueloDAO.actualizar(vuelo);
+                        System.out.println("[ConfirmarReserva] Vuelo " + vuelo.getAerolinea() + " asientos restantes: " + vuelo.getAsientosDisponibles());
+                    }
+                }
+
+                // ✅ NOTA: Los autos (catalogo_autos) no tienen columna de disponibilidad
+                // Las reservas de autos solo registran precios, no cantidad disponible
+                for (DetalleReservaAuto detalle : reserva.getDetallesAuto()) {
+                    Auto auto = detalle.getAuto();
+                    System.out.println("[ConfirmarReserva] Auto reservado: " + (auto != null ? auto.getModeloAuto() : "Unknown"));
+                }
+
                 mostrarExito(
                         "Reserva creada correctamente.\n" +
-                                "Folio: #" + idReserva
+                                "Folio: #" + idReserva + "\n" +
+                                "Disponibilidad actualizada."
                 );
 
                 ReservaTemporal.limpiar();

@@ -28,14 +28,16 @@
     <center>
 
         <VBox spacing="15"
-              styleClass="panel-surface">
+              styleClass="panel-surface"
+              VBox.vgrow="ALWAYS">
 
             <padding>
                 <Insets top="20" right="20" bottom="20" left="20"/>
             </padding>
 
             <TableView fx:id="tablaVuelos"
-                       prefHeight="500"
+                       prefHeight="600"
+                       VBox.vgrow="ALWAYS"
                        styleClass="modern-table">
 
                 <columns>
@@ -53,16 +55,28 @@
                                  prefWidth="120"/>
 
                     <TableColumn fx:id="colSalida"
-                                 text="Salida"
-                                 prefWidth="180"/>
+                                 text="Fecha Salida"
+                                 prefWidth="150"/>
+
+                    <TableColumn fx:id="colLlegada"
+                                 text="Fecha Llegada"
+                                 prefWidth="150"/>
 
                     <TableColumn fx:id="colPrecio"
                                  text="Precio"
-                                 prefWidth="120"/>
+                                 prefWidth="100"/>
+
+                    <TableColumn fx:id="colDivisa"
+                                 text="Divisa"
+                                 prefWidth="80"/>
 
                     <TableColumn fx:id="colAsientos"
-                                 text="Asientos"
+                                 text="Disponibles"
                                  prefWidth="100"/>
+
+                    <TableColumn fx:id="colRedondo"
+                                 text="Redondo"
+                                 prefWidth="80"/>
 
                 </columns>
 
