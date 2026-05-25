@@ -5,7 +5,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 
+import org.example.agenciadeviajes.util.PDFReservaGenerator;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -183,5 +185,66 @@ public class MisReservasController {
 
             e.printStackTrace();
         }
+    }
+    @FXML
+    public void generarPDF() {
+
+        Reserva reservaSeleccionada =
+                tablaReservas.getSelectionModel().getSelectedItem();
+
+        if (reservaSeleccionada == null) {
+
+            mostrarAlerta(
+                    "Selecciona una reserva."
+            );
+
+            return;
+        }
+
+        try {
+
+            PDFReservaGenerator.generarPDF(
+                    reservaSeleccionada
+            );
+
+            mostrarExito(
+                    "Ticket PDF generado correctamente."
+            );
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+            mostrarAlerta(
+                    "Error al generar PDF."
+            );
+        }
+    }
+    //Metodos y alartas de exito y error
+    private void mostrarAlerta(String mensaje) {
+
+        Alert alert =
+                new Alert(Alert.AlertType.WARNING);
+
+        alert.setTitle("Aviso");
+
+        alert.setHeaderText(null);
+
+        alert.setContentText(mensaje);
+
+        alert.showAndWait();
+    }
+    private void mostrarExito(String mensaje) {
+
+        Alert alert =
+                new Alert(Alert.AlertType.INFORMATION);
+
+        alert.setTitle("PDF Generado");
+
+        alert.setHeaderText(null);
+
+        alert.setContentText(mensaje);
+
+        alert.showAndWait();
     }
 }

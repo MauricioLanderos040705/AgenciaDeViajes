@@ -5,6 +5,8 @@ module org.example.agenciadeviajes {
     requires javafx.fxml;
 
     requires java.sql;
+    requires com.github.librepdf.openpdf;
+    requires java.desktop;
 
 
     opens org.example.agenciadeviajes to javafx.fxml;

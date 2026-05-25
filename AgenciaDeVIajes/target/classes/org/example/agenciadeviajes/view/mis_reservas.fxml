@@ -65,7 +65,9 @@
         </VBox>
 
     </HBox>
-
+    <Button text="Generar Ticket PDF"
+            prefWidth="220"
+            onAction="#generarPDF"/>
     <Button text="Volver al Home"
             prefWidth="240"
             prefHeight="40"
