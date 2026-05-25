@@ -2,10 +2,12 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.VBox?>
 
 <VBox alignment="CENTER"
       spacing="15"
+      stylesheets="@../css/styles.css"
+      styleClass="auth-container"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="org.example.agenciadeviajes.controller.LoginController">
 
@@ -14,22 +16,29 @@
     </padding>
 
     <Label text="Agencia de Viajes"
-           style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+           styleClass="auth-title"/>
 
     <TextField fx:id="txtCorreo"
-               promptText="Correo" />
+               promptText="Correo"
+               prefWidth="320"
+               styleClass="modern-input"/>
 
     <PasswordField fx:id="txtPassword"
-                   promptText="Contraseña" />
+                   promptText="Contraseña"
+                   prefWidth="320"
+                   styleClass="modern-input"/>
 
     <Button text="Iniciar Sesión"
             onAction="#iniciarSesion"
-            prefWidth="200"/>
+            prefWidth="220"
+            styleClass="primary-button"/>
+
     <Button text="Crear cuenta"
             onAction="#abrirRegistro"
-            prefWidth="200"/>
+            prefWidth="220"
+            styleClass="secondary-button"/>
 
     <Label fx:id="lblMensaje"
-           style="-fx-text-fill: red;" />
+           styleClass="error-label"/>
 
 </VBox>

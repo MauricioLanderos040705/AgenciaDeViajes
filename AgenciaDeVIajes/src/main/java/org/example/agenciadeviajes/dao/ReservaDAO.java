@@ -257,7 +257,6 @@ public class ReservaDAO {
         );
 
         r.setUsuario(u);
-
         return r;
     }
 

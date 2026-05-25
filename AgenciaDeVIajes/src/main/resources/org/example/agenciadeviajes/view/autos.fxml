@@ -5,46 +5,50 @@
 <?import javafx.scene.layout.*?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml"
+            stylesheets="@../css/styles.css"
+            styleClass="main-background"
             fx:controller="org.example.agenciadeviajes.controller.AutosController">
 
-    <!-- TOP -->
     <top>
 
         <VBox spacing="10"
-              style="-fx-background-color: #EF6C00;">
+              styleClass="top-bar warning-bar">
 
             <padding>
                 <Insets top="15" right="15" bottom="15" left="15"/>
             </padding>
 
             <Label text="Consulta de Autos"
-                   style="-fx-text-fill: white;
-                          -fx-font-size: 24px;
-                          -fx-font-weight: bold;"/>
+                   styleClass="section-title"/>
 
         </VBox>
 
     </top>
 
-    <!-- CENTER -->
     <center>
 
-        <VBox spacing="15">
+        <VBox spacing="15"
+              styleClass="panel-surface">
 
             <padding>
                 <Insets top="20" right="20" bottom="20" left="20"/>
             </padding>
+
             <HBox spacing="10">
 
                 <DatePicker fx:id="dpFechaInicio"
-                            promptText="Fecha Inicio"/>
+                            promptText="Fecha Inicio"
+                            styleClass="modern-input"/>
 
                 <DatePicker fx:id="dpFechaFin"
-                            promptText="Fecha Fin"/>
+                            promptText="Fecha Fin"
+                            styleClass="modern-input"/>
 
             </HBox>
+
             <TableView fx:id="tablaAutos"
-                       prefHeight="500">
+                       prefHeight="500"
+                       styleClass="modern-table">
 
                 <columns>
 
@@ -75,12 +79,16 @@
                 </columns>
 
             </TableView>
+
             <Button text="Reservar Auto"
-                    prefWidth="200"
-                    onAction="#reservarAuto"/>
+                    prefWidth="220"
+                    onAction="#reservarAuto"
+                    styleClass="primary-button"/>
+
             <Button text="Volver al Home"
-                    prefWidth="200"
-                    onAction="#volverHome"/>
+                    prefWidth="220"
+                    onAction="#volverHome"
+                    styleClass="secondary-button"/>
 
         </VBox>
 

@@ -5,31 +5,30 @@
 <?import javafx.scene.layout.*?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml"
+            stylesheets="@../css/styles.css"
+            styleClass="main-background"
             fx:controller="org.example.agenciadeviajes.controller.HotelesController">
 
-    <!-- TOP -->
     <top>
 
         <VBox spacing="10"
-              style="-fx-background-color: #2E7D32;">
+              styleClass="top-bar success-bar">
 
             <padding>
                 <Insets top="15" right="15" bottom="15" left="15"/>
             </padding>
 
             <Label text="Consulta de Hoteles"
-                   style="-fx-text-fill: white;
-                          -fx-font-size: 24px;
-                          -fx-font-weight: bold;"/>
+                   styleClass="section-title"/>
 
         </VBox>
 
     </top>
 
-    <!-- CENTER -->
     <center>
 
-        <VBox spacing="15">
+        <VBox spacing="15"
+              styleClass="panel-surface">
 
             <padding>
                 <Insets top="20" right="20" bottom="20" left="20"/>
@@ -38,17 +37,22 @@
             <HBox spacing="10">
 
                 <DatePicker fx:id="dpCheckIn"
-                            promptText="Check-In"/>
+                            promptText="Check-In"
+                            styleClass="modern-input"/>
 
                 <DatePicker fx:id="dpCheckOut"
-                            promptText="Check-Out"/>
+                            promptText="Check-Out"
+                            styleClass="modern-input"/>
 
                 <Spinner fx:id="spHabitaciones"
-                         prefWidth="120"/>
+                         prefWidth="120"
+                         styleClass="modern-input"/>
 
             </HBox>
+
             <TableView fx:id="tablaHoteles"
-                       prefHeight="500">
+                       prefHeight="500"
+                       styleClass="modern-table">
 
                 <columns>
 
@@ -79,13 +83,16 @@
                 </columns>
 
             </TableView>
+
             <Button text="Reservar Hotel"
-                    prefWidth="200"
-                    onAction="#reservarHotel"/>
+                    prefWidth="220"
+                    onAction="#reservarHotel"
+                    styleClass="primary-button"/>
 
             <Button text="Volver al Home"
-                    prefWidth="200"
-                    onAction="#volverHome"/>
+                    prefWidth="220"
+                    onAction="#volverHome"
+                    styleClass="secondary-button"/>
 
         </VBox>
 

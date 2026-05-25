@@ -5,63 +5,66 @@
 <?import javafx.scene.layout.*?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml"
+            stylesheets="@../css/styles.css"
+            styleClass="main-background"
             fx:controller="org.example.agenciadeviajes.controller.HomeController">
 
-    <!-- TOP -->
     <top>
         <VBox spacing="10"
               alignment="CENTER"
-              style="-fx-background-color: #1E88E5;">
+              styleClass="top-bar">
 
             <padding>
                 <Insets top="20" bottom="20"/>
             </padding>
 
             <Label text="Agencia de Viajes"
-                   style="-fx-font-size: 28px;
-                          -fx-font-weight: bold;
-                          -fx-text-fill: white;" />
+                   styleClass="main-title"/>
 
             <Label fx:id="lblBienvenida"
-                   style="-fx-font-size: 16px;
-                          -fx-text-fill: white;" />
+                   styleClass="welcome-label"/>
         </VBox>
     </top>
 
-    <!-- CENTER -->
     <center>
 
         <VBox alignment="CENTER"
-              spacing="20">
+              spacing="20"
+              styleClass="content-container">
 
             <padding>
                 <Insets top="40"/>
             </padding>
 
             <Button text="Consultar Vuelos"
-                    prefWidth="250"
+                    prefWidth="260"
                     prefHeight="45"
-                    onAction="#abrirVuelos"/>
+                    onAction="#abrirVuelos"
+                    styleClass="primary-button"/>
 
             <Button text="Consultar Hoteles"
-                    prefWidth="250"
+                    prefWidth="260"
                     prefHeight="45"
-                    onAction="#abrirHoteles"/>
+                    onAction="#abrirHoteles"
+                    styleClass="primary-button"/>
 
             <Button text="Consultar Autos"
-                    prefWidth="250"
+                    prefWidth="260"
                     prefHeight="45"
-                    onAction="#abrirAutos"/>
+                    onAction="#abrirAutos"
+                    styleClass="primary-button"/>
 
             <Button text="Mis Reservas"
-                    prefWidth="250"
+                    prefWidth="260"
                     prefHeight="45"
-                    onAction="#abrirReservas"/>
+                    onAction="#abrirReservas"
+                    styleClass="secondary-button"/>
 
             <Button text="Cerrar Sesión"
-                    prefWidth="250"
+                    prefWidth="260"
                     prefHeight="45"
-                    onAction="#cerrarSesion"/>
+                    onAction="#cerrarSesion"
+                    styleClass="danger-button"/>
 
         </VBox>
 

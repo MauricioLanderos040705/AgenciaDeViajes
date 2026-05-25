@@ -6,6 +6,8 @@
 
 <VBox alignment="CENTER"
       spacing="12"
+      stylesheets="@../css/styles.css"
+      styleClass="auth-container"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="org.example.agenciadeviajes.controller.RegisterController">
 
@@ -14,28 +16,39 @@
     </padding>
 
     <Label text="Registro de Usuario"
-           style="-fx-font-size: 22px; -fx-font-weight: bold;" />
+           styleClass="auth-title"/>
 
     <TextField fx:id="txtNombre"
-               promptText="Nombre"/>
+               promptText="Nombre"
+               prefWidth="320"
+               styleClass="modern-input"/>
 
     <TextField fx:id="txtApellido"
-               promptText="Apellido"/>
+               promptText="Apellido"
+               prefWidth="320"
+               styleClass="modern-input"/>
 
     <TextField fx:id="txtCorreo"
-               promptText="Correo"/>
+               promptText="Correo"
+               prefWidth="320"
+               styleClass="modern-input"/>
 
     <PasswordField fx:id="txtPassword"
-                   promptText="Contraseña"/>
+                   promptText="Contraseña"
+                   prefWidth="320"
+                   styleClass="modern-input"/>
 
     <Button text="Registrarse"
-            prefWidth="200"
-            onAction="#registrarUsuario"/>
+            prefWidth="220"
+            onAction="#registrarUsuario"
+            styleClass="primary-button"/>
 
     <Button text="Volver al Login"
-            prefWidth="200"
-            onAction="#volverLogin"/>
+            prefWidth="220"
+            onAction="#volverLogin"
+            styleClass="secondary-button"/>
 
-    <Label fx:id="lblMensaje"/>
+    <Label fx:id="lblMensaje"
+           styleClass="info-label"/>
 
 </VBox>

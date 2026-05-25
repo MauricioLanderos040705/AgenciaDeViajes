@@ -5,38 +5,38 @@
 <?import javafx.scene.layout.*?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml"
+            stylesheets="@../css/styles.css"
+            styleClass="main-background"
             fx:controller="org.example.agenciadeviajes.controller.VuelosController">
 
-    <!-- TOP -->
     <top>
 
         <VBox spacing="10"
-              style="-fx-background-color: #1565C0;">
+              styleClass="top-bar">
 
             <padding>
                 <Insets top="15" right="15" bottom="15" left="15"/>
             </padding>
 
             <Label text="Consulta de Vuelos"
-                   style="-fx-text-fill: white;
-                          -fx-font-size: 24px;
-                          -fx-font-weight: bold;"/>
+                   styleClass="section-title"/>
 
         </VBox>
 
     </top>
 
-    <!-- CENTER -->
     <center>
 
-        <VBox spacing="15">
+        <VBox spacing="15"
+              styleClass="panel-surface">
 
             <padding>
                 <Insets top="20" right="20" bottom="20" left="20"/>
             </padding>
 
             <TableView fx:id="tablaVuelos"
-                       prefHeight="500">
+                       prefHeight="500"
+                       styleClass="modern-table">
 
                 <columns>
 
@@ -67,13 +67,16 @@
                 </columns>
 
             </TableView>
+
             <Button text="Reservar Vuelo"
-                    prefWidth="200"
-                    onAction="#reservarVuelo"/>
+                    prefWidth="220"
+                    onAction="#reservarVuelo"
+                    styleClass="primary-button"/>
 
             <Button text="Volver al Home"
-                    prefWidth="200"
-                    onAction="#volverHome"/>
+                    prefWidth="220"
+                    onAction="#volverHome"
+                    styleClass="secondary-button"/>
 
         </VBox>
 
